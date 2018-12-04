@@ -41,12 +41,16 @@ Lenovo Online Mall
    ```
 ## 前端开发
    前端主要在views目录里面写前端的文件（html），在里面引用资源文件（如js或css）直接从网站根目录引用
+
    如：//assets/js/main.js或//assets/img/logo.svg
+
    将需要引用的js等资源文件应放在html/assets目录下
    
 ## 后端开发
    后端首先需要在models中建立各种模型，如User、Goods等，全部面向对象
+
    例如：
+
    /models/user_model.php
    ```php
    class User_model extends CI_Model {
@@ -60,10 +64,11 @@ Lenovo Online Mall
    }
    ```
    
-   
    之后在controllers中编写逻辑控制
+
    例如：
-   /controllers/
+
+   /controllers/user.php
    ```php
    defined('BASEPATH') OR exit('No direct script access allowed');
    class User extends CI_Controller {
@@ -94,12 +99,16 @@ Lenovo Online Mall
    
 ## 路由
    在/config/routes.php中添加路由
+
    例如：
+
    ```php
    $route['hahahaha'] = 'user/GetName';
    ```
    代表当访问url为http://xxx.xxx.xxx.xxx/hahahaha时，将调用控制器user.php中GetName函数，该函数中的输入将作为返回页面
+
    更多例子：
+
    ```php
    $route['hahahaha/(:num)'] = 'user/GetName'; // 当访问url为http://xxx.xxx.xxx.xxx/hahahaha/加任意数字(如123,222)会调用user/GetName
    $route['hahahaha/heiheihei/(:any)'] = 'user/GetName'; // 当访问url为http://xxx.xxx.xxx.xxx/hahahaha/heiheihei/加任意字符(如aaa,123,a12)会调用user/GetName
@@ -108,6 +117,7 @@ Lenovo Online Mall
    
  ## 视图
    使用`this->load->view('/templates/header');`调用views中的视图，可以累加调用
+
    例如：
    ```php
    if ($this->is_logined() === false){ // templates等目录均在views中，如/views/templates/header.php
