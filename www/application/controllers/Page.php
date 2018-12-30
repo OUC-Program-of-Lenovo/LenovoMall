@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Home extends CI_Controller {
+class Page extends CI_Controller {
 	/**
 	 * Index Page for this controller.
 	 *
@@ -29,25 +29,25 @@ class Home extends CI_Controller {
 	    $this->load->helper('url');
 	}
 
-	public function view()
+	public function index()
 	{
 		if ($this->is_logined() === false){
 			$this->load->view('/templates/header');
 			$this->load->view('/slide_bar/header');
-			$this->load->view('/slide_bar/content_visitor.php');
-			$this->load->view('/home/content');
+			$this->load->view('/slide_bar/content_visitor');
+			$this->load->view('/content');
 			$this->load->view('/slide_bar/footer');
 			$this->load->view('/templates/footer');
 		}else if($this->is_admin() === false){
 			$this->load->view('/templates/header');
 			$this->load->view('/slide_bar/header');
-			$this->load->view('/slide_bar/content_user.php');
+			$this->load->view('/slide_bar/content_user');
 			$this->load->view('/slide_bar/footer');
 			$this->load->view('/templates/footer');
 		}else {
 			$this->load->view('/templates/header');
 			$this->load->view('/slide_bar/header');
-			$this->load->view('/slide_bar/content_admin.php');
+			$this->load->view('/slide_bar/content_admin');
 			$this->load->view('/slide_bar/footer');
 			$this->load->view('/templates/footer');
 		}
@@ -55,16 +55,10 @@ class Home extends CI_Controller {
 
 	public function is_logined()
 	{
-	    if($this->session->user_id === NULL){
-	        return false;
-	    }else{
-	        $session_alive_time = $this->session->session_alive_time;
-	        if($this->is_overdue($session_alive_time)){
-	            return false;
-	        }else{
-	            return true;
-	        }
-	    }
+	    return (
+	        $this->session->user_id !== NULL &&
+            $this->is_overdue($this->session->session_alive_time) === false
+        );
 	}
 
 	public function is_overdue($alive_time)
@@ -74,6 +68,6 @@ class Home extends CI_Controller {
 
 	public function is_admin()
 	{
-	    return (intval($this->session->usertype) === 1);
+	    return (intval($this->session->user_type) === 1);
 	}
 }

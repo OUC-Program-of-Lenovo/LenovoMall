@@ -115,7 +115,7 @@ Lenovo Online Mall
    $route['default_controller'] = 'home/view'; // 表示默认页面即当访问url为http://xxx.xxx.xxx.xxx/时调用home控制器中的view函数
    ```
    
- ## 视图
+## 视图
    使用`this->load->view('/templates/header');`调用views中的视图，可以累加调用
 
    例如：
@@ -144,3 +144,119 @@ Lenovo Online Mall
    
 ## 获取数据
    使用$this->input获取提交的数据，详细使用方法看官方文档
+
+## 安装
+均在Linux下完成
+
+1. 更新源
+```
+sudo apt update
+sudo apt upgrade -y
+sudo apt dist-upgrade -y
+```
+
+2. 安装Vim(可选)
+```
+sudo apt install vim -y
+```
+
+2. 安装git(可选)
+```
+sudo apt install git -y
+```
+
+3. 克隆仓库(可选)
+```
+sudo git clone https://github.com/OUC-Program-of-Lenovo/LenovoMall /var/www/
+或者直接将源码解压放入/var/www
+```
+
+4. 安装依赖软件包
+```
+sudo apt install apache2
+sudo apt install php7.0
+sudo apt install php7.0-gd
+sudo apt install php7.0-mysqli
+sudo apt install libapache2-mod-php7.0
+sudo apt install mysql-server
+```
+
+5. 配置 php 与 apache2
+```
+启用 gd 库用于生成二维码
+phpenmod gd
+启动 rewrite 模块用于美化 URL
+a2enmod rewrite
+```
+
+6. 修改 apache2 配置文件
+```
+vim /etc/apache2/apache2.conf
+找到对应位置，将其修改为
+<Directory /var/www/>
+        SetEnv CI_ENV production
+        Options FollowSymLinks
+        AllowOverride ALL
+        Require all granted
+</Directory>
+```
+
+7. 创建可写目录用于保存验证码
+```
+mkdir /var/www/html/assets/captcha(如果已存在则不用创建)
+chmod o+w /var/www/html/assets/captcha
+```
+
+8. 创建数据库
+```
+create database Lenovo;
+```
+
+9. 导入数据库
+```
+mysql -u root -p -D Lenovo < database.sql
+```
+
+10. 配置数据库
+```
+cd /var/www/application/config/
+cp database.php.example database.php
+修改 :
+username
+password
+database = Lenovo
+```
+
+11. 配置发信邮箱(可选)
+```
+1.cp email.php.example email.php
+
+2.根据你的邮件服务提供商的配置说明进行配置
+主要需要修改 :
+smtp_host
+smtp_port
+smtp_user
+smtp_pass
+
+3.然后vim /var/www/application/controllers/User.php
+搜索到admin@srpopty.cn
+将其替换为自己邮箱
+```
+
+12. 重启服务
+```
+service mysql restart
+service apache2 restart
+```
+
+13. 默认管理员登录账号密码
+```
+用户名: admin
+密码: admin123456
+```
+
+13. 默认普通用户登录账号密码
+```
+用户名: test
+密码: test123456
+```

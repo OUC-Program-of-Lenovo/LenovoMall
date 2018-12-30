@@ -1,0 +1,59 @@
+.rules {
+    overflow: hidden;
+}
+
+.rules li {
+    list-style: none;
+    position: relative;
+    padding: 0 0 0 2em;
+    margin: 0 0 .5em 10px;
+    -webkit-transition: .12s;
+    transition: .12s;
+}
+
+.rules li::before {
+    position: absolute;
+    content: '\2022';
+    font-family: Arial;
+    color: #FFF;
+    top: 0;
+    left: 0;
+    text-align: center;
+    font-size: 2em;
+    opacity: .5;
+    line-height: .75;
+    -webkit-transition: .5s;
+    transition: .5s;
+}
+
+.rules li:hover {
+    color: #FFF;
+}
+
+.rules li:hover::before {
+    -webkit-transform: scale(2);
+    -ms-transform: scale(2);
+    transform: scale(2);
+    opacity: 1;
+    text-shadow: 0 0 4px;
+    -webkit-transition: .1s;
+    transition: .1s;
+}
+
+.rules {
+    display: inline-block;
+    text-align: left;
+    vertical-align: top;
+    background: rgba(0, 0, 0, 0.2);
+    color: rgba(19, 78, 29, 0.72);
+    border-radius: 5px;
+    padding: 1.5em;
+    margin: 2%;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.rules-important {
+    color: red;
+    font-size: 20px;
+    font-weight: 700;
+}

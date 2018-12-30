@@ -1,0 +1,25 @@
+.cart-container {
+    background-color: #FEDCBA;
+    bottom: 0px;
+    right: 0px;
+    /*举例右边3像素*/
+    position: absolute;
+    padding-bottom: 3px;
+    width: 360px;
+    height: 100%;
+    padding-left: 16px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.hide-cart-container {
+    position: fixed;
+    height: 36px;
+    width: 36px;
+    right: 0px;
+    top: 0px;
+    margin-right: 20px;
+    margin-top: 20px;
+    font-size: 36px;
+    z-index: 999;
+}
