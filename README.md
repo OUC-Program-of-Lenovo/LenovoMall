@@ -145,7 +145,7 @@ Lenovo Online Mall
 ## 获取数据
    使用$this->input获取提交的数据，详细使用方法看官方文档
 
-## 安装
+## 部署
 均在Linux下完成
 
 1. 更新源
@@ -171,6 +171,11 @@ sudo git clone https://github.com/OUC-Program-of-Lenovo/LenovoMall /var/www/
 或者直接将源码解压放入/var/www
 ```
 
+3. 移动源码
+```
+sudo mv /var/www/LenovoMall/www/* /var/www/
+```
+
 4. 安装依赖软件包
 ```
 sudo apt install apache2
@@ -181,17 +186,16 @@ sudo apt install libapache2-mod-php7.0
 sudo apt install mysql-server
 ```
 
-5. 配置 php 与 apache2
+5. 配置 php 与 apache
 ```
-启用 gd 库用于生成二维码
-phpenmod gd
+sudo phpenmod gd
 启动 rewrite 模块用于美化 URL
-a2enmod rewrite
+sudo a2enmod rewrite
 ```
 
 6. 修改 apache2 配置文件
 ```
-vim /etc/apache2/apache2.conf
+sudo vim /etc/apache2/apache2.conf
 找到对应位置，将其修改为
 <Directory /var/www/>
         SetEnv CI_ENV production
@@ -199,16 +203,21 @@ vim /etc/apache2/apache2.conf
         AllowOverride ALL
         Require all granted
 </Directory>
+
+如果是开发环境，则将production替换为development
 ```
+
 
 7. 创建可写目录用于保存验证码
 ```
-mkdir /var/www/html/assets/captcha(如果已存在则不用创建)
-chmod o+w /var/www/html/assets/captcha
+sudo mkdir /var/www/html/assets/captcha(如果已存在则不用创建)
+sudo chmod o+w /var/www/html/assets/captcha
 ```
 
-8. 创建数据库
+8. 登录与创建数据库
 ```
+mysql -u root -p
+登陆后创建数据库
 create database Lenovo;
 ```
 
@@ -219,9 +228,11 @@ mysql -u root -p -D Lenovo < database.sql
 
 10. 配置数据库
 ```
-cd /var/www/application/config/
-cp database.php.example database.php
-修改 :
+1. cd /var/www/application/config/
+sudo cp /var/www/appalication/config/database.php.example /var/www/appalication/config/database.php
+
+2. 修改数据库信息:
+sudo vim /var/www/appalication/config/database.php
 username
 password
 database = Lenovo
@@ -229,9 +240,10 @@ database = Lenovo
 
 11. 配置发信邮箱(可选)
 ```
-1.cp email.php.example email.php
+1. cp /var/www/appalication/config/email.php.example /var/www/appalication/config/email.php
 
-2.根据你的邮件服务提供商的配置说明进行配置
+2. 根据你的邮件服务提供商的配置说明进行配置
+sudo vim /var/www/appalication/config/email.php
 主要需要修改 :
 smtp_host
 smtp_port
@@ -245,8 +257,8 @@ smtp_pass
 
 12. 重启服务
 ```
-service mysql restart
-service apache2 restart
+sudo service mysql restart
+sudo service apache2 restart
 ```
 
 13. 默认管理员登录账号密码
@@ -260,3 +272,27 @@ service apache2 restart
 用户名: test
 密码: test123456
 ```
+
+
+## 虚拟机中开发环境配置
+由于此项目部署在Linux系统中，但是在Windows中开发很不方便调试，因此可以将开发目录共享到Linux虚拟机中
+1. 开启虚拟机
+
+2. 在菜单栏->虚拟机->设置->选项->共享文件夹中选择添加，添加开发目录，取名为www
+
+3. 将开发目录添加进去后，在虚拟机中查看是否添加成功
+```
+ls /mnt/hgfs/
+若出现www目录，则添加成功
+```
+
+4. 添加完成后，创建软连接到/var中
+```
+首先删除原来的www目录
+sudo rm -rf /var/www/
+
+创建软连接
+sudo ln -s /mnt/hgfs/www /var/
+```
+
+之后在Windows中对开发目录下源码的修改都将直接共享到Linux中，方便调试
