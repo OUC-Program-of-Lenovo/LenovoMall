@@ -42,12 +42,14 @@ class Page extends CI_Controller {
 			$this->load->view('/templates/header');
 			$this->load->view('/slide_bar/header');
 			$this->load->view('/slide_bar/content_user');
+			$this->load->view('/content');
 			$this->load->view('/slide_bar/footer');
 			$this->load->view('/templates/footer');
 		}else {
 			$this->load->view('/templates/header');
 			$this->load->view('/slide_bar/header');
 			$this->load->view('/slide_bar/content_admin');
+			$this->load->view('/content');
 			$this->load->view('/slide_bar/footer');
 			$this->load->view('/templates/footer');
 		}
