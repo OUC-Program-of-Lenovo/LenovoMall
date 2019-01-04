@@ -1,12 +1,6 @@
 <ul id="toggle" class="slide-bar-left">
-    <li class="cd-mine">
-        <div class="active border">
-            <span class="menu-icons fa fa-home"></span>
-            <a href="javascript:get_personal_information();">Profile</a>
-        </div>
-    </li>
 
-    <li class="cd-challenges">
+    <li class="cd-index">
         <div>
             <span class="menu-icons fa fa-list-ul"></span>
             <a href="#">Category</a>
@@ -14,20 +8,27 @@
         </div>
         <ul>
             <li>
-                <a href="#">None</a>
+                <a href="#">All</a>
             </li>
         </ul>
+    </li>
+
+    <li class="cd-mine">
+        <div class="active border">
+            <span class="menu-icons fa fa-home"></span>
+            <a href="javascript:get_personal_information();">Profile</a>
+        </div>
     </li>
 
     <li class="cd-write-up">
         <div>
             <span class="menu-icons fa fa-bookmark"></span>
-            <a href="#">Side Bar 1</a>
+            <a href="#">Orders</a>
             <span class="the-btn fa fa-plus"></span>
         </div>
         <ul>
             <li>
-                <a href="#">None</a>
+                <a href="#">All</a>
             </li>
         </ul>
     </li>
@@ -35,7 +36,7 @@
     <li class="cd-tutorials">
         <div>
             <span class="menu-icons  fa fa-book"></span>
-            <a href="#">Side Bar 2</a>
+            <a href="#">News</a>
             <span class="the-btn fa fa-plus"></span>
         </div>
         <ul>

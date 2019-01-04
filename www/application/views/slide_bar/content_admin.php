@@ -1,6 +1,18 @@
 <link rel="stylesheet" type="text/css" href="/assets/css/admin.css">
 <script type="text/javascript" src="/assets/js/admin.js"></script>
 <ul id="toggle" class="slide-bar-left">
+    <li class="cd-index">
+        <div>
+            <span class="menu-icons fa fa-list-ul"></span>
+            <a href="#">Category</a>
+            <span class="the-btn fa fa-plus"></span>
+        </div>
+        <ul>
+            <li>
+                <a href="#">All</a>
+            </li>
+        </ul>
+    </li>
     <li class="cd-mine">
         <div class="active border">
             <span class="menu-icons fa fa-home"></span>
@@ -26,45 +38,6 @@
             </li>
             <li>
                 <a href="javascript:;">News</a>
-            </li>
-        </ul>
-    </li>
-
-    <li class="cd-challenges">
-        <div>
-            <span class="menu-icons  fa fa-list-ul"></span>
-            <a href="#">Challenge</a>
-            <span class="the-btn fa fa-plus"></span>
-        </div>
-        <ul>
-            <li>
-                <a href="#">None</a>
-            </li>
-        </ul>
-    </li>
-
-    <li class="cd-write-up">
-        <div>
-            <span class="menu-icons  fa fa-bookmark"></span>
-            <a href="#">Side Bar 1</a>
-            <span class="the-btn fa fa-plus"></span>
-        </div>
-        <ul>
-            <li>
-                <a href="#">None</a>
-            </li>
-        </ul>
-    </li>
-
-    <li class="cd-tutorials">
-        <div>
-            <span class="menu-icons  fa fa-book"></span>
-            <a href="#">Side Bar 2</a>
-            <span class="the-btn fa fa-plus"></span>
-        </div>
-        <ul>
-            <li>
-                <a href="#">None</a>
             </li>
         </ul>
     </li>
