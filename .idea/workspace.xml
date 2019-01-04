@@ -2,29 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c28cd32-d6a2-445e-b887-e17fc57fb6c5" name="默认更改列表" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/application/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/application/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/application/config/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/application/config/routes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/application/controllers/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/application/controllers/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/application/models/User_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/application/models/User_model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/application/views/content.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/application/views/content.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/application/views/slide_bar/content_admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/application/views/slide_bar/content_admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/application/views/slide_bar/content_user.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/application/views/slide_bar/content_user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/application/views/slide_bar/content_visitor.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/application/views/slide_bar/content_visitor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/database.sql" beforeDir="false" afterPath="$PROJECT_DIR$/www/database.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/html/assets/captcha/1546526284.6513.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/html/assets/captcha/1546526879.1947.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/html/assets/captcha/1546526962.8776.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/html/assets/captcha/1546564353.5387.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/html/assets/captcha/1546565028.9376.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/html/assets/captcha/1546565228.9858.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/html/assets/captcha/1546565274.0959.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/html/assets/captcha/1546565321.429.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/html/assets/css/content.css" beforeDir="false" afterPath="$PROJECT_DIR$/www/html/assets/css/content.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/html/assets/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/html/assets/js/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/html/assets/js/content.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/html/assets/js/content.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/html/assets/js/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/html/assets/js/profile.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +40,7 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="3" />
-          <entry key="js" value="11" />
+          <entry key="js" value="12" />
           <entry key="md" value="1" />
           <entry key="php" value="26" />
           <entry key="sql" value="4" />
@@ -70,7 +49,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="3" />
-          <entry key="JavaScript" value="11" />
+          <entry key="JavaScript" value="12" />
           <entry key="Markdown" value="1" />
           <entry key="PHP" value="26" />
           <entry key="SQL" value="4" />
@@ -80,8 +59,8 @@
         <counts>
           <entry key="css" value="49" />
           <entry key="js" value="371" />
-          <entry key="php" value="2021" />
-          <entry key="sql" value="6" />
+          <entry key="php" value="2134" />
+          <entry key="sql" value="7" />
           <entry key="txt" value="6" />
         </counts>
       </usages-collector>
@@ -89,22 +68,22 @@
         <counts>
           <entry key="CSS" value="49" />
           <entry key="JavaScript" value="371" />
-          <entry key="PHP" value="2021" />
+          <entry key="PHP" value="2134" />
           <entry key="PLAIN_TEXT" value="6" />
-          <entry key="SQL" value="6" />
+          <entry key="SQL" value="7" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.43721634">
+    <splitter split-orientation="horizontal" split-proportion="0.73071104">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/www/application/controllers/User.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1180">
-                  <caret line="1154" column="20" lean-forward="true" selection-start-line="1154" selection-start-column="20" selection-end-line="1154" selection-end-column="20" />
+                <state relative-caret-position="-21382">
+                  <caret line="300" lean-forward="true" selection-start-line="300" selection-end-line="300" />
                 </state>
               </provider>
             </entry>
@@ -139,17 +118,22 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/www/application/views/slide_bar/content_visitor.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-665">
+                <state relative-caret-position="506">
                   <caret line="62" column="46" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/www/html/assets/js/rewrite_submit.js">
+              <provider selected="true" editor-type-id="text-editor" />
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/www/html/assets/js/content.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2139">
-                  <caret line="123" selection-start-line="123" selection-end-line="123" />
+                <state relative-caret-position="1081">
+                  <caret line="47" column="44" selection-start-line="47" selection-start-column="44" selection-end-line="47" selection-end-column="44" />
                 </state>
               </provider>
             </entry>
@@ -186,17 +170,17 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/www/database.sql">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="95">
-                  <caret line="181" column="217" selection-start-line="181" selection-start-column="217" selection-end-line="181" selection-end-column="217" />
+                <state relative-caret-position="201">
+                  <caret line="155" column="21" selection-start-line="155" selection-start-column="21" selection-end-line="155" selection-end-column="21" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/www/html/assets/js/profile.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="115">
-                  <caret line="50" column="36" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
+                <state>
+                  <caret column="33" selection-start-column="33" selection-end-column="33" />
                 </state>
               </provider>
             </entry>
@@ -231,22 +215,26 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/www/application/config/database.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="315">
-                  <caret line="78" column="24" selection-start-line="78" selection-start-column="24" selection-end-line="78" selection-end-column="24" />
+                <state relative-caret-position="232">
+                  <caret line="79" column="29" selection-start-line="79" selection-start-column="19" selection-end-line="79" selection-end-column="29" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/www/application/views/content.php">
-              <provider selected="true" editor-type-id="text-editor" />
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="92">
+                  <caret line="4" column="49" lean-forward="true" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="49" />
+                </state>
+              </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/www/html/assets/css/content.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1311">
-                  <caret line="88" column="41" selection-start-line="88" selection-start-column="41" selection-end-line="88" selection-end-column="41" />
+                <state relative-caret-position="391">
+                  <caret line="157" column="19" lean-forward="true" selection-start-line="157" selection-start-column="19" selection-end-line="157" selection-end-column="19" />
                 </state>
               </provider>
             </entry>
@@ -259,6 +247,7 @@
     <findStrings>
       <find>seg</find>
       <find>funShowDivCenter</find>
+      <find>cart</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -271,19 +260,19 @@
         <option value="$PROJECT_DIR$/www/application/controllers/Page.php" />
         <option value="$PROJECT_DIR$/www/html/assets/css/cart.css" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/www/application/config/database.php" />
         <option value="$PROJECT_DIR$/www/application/views/slide_bar/content_visitor.php" />
         <option value="$PROJECT_DIR$/www/html/assets/css/content.css" />
         <option value="$PROJECT_DIR$/www/html/assets/js/common.js" />
         <option value="$PROJECT_DIR$/www/application/models/User_model.php" />
         <option value="$PROJECT_DIR$/www/application/config/routes.php" />
-        <option value="$PROJECT_DIR$/www/database.sql" />
-        <option value="$PROJECT_DIR$/www/application/controllers/User.php" />
         <option value="$PROJECT_DIR$/www/html/assets/js/content.js" />
-        <option value="$PROJECT_DIR$/www/html/assets/js/profile.js" />
         <option value="$PROJECT_DIR$/www/application/views/slide_bar/content_admin.php" />
         <option value="$PROJECT_DIR$/www/application/views/slide_bar/content_user.php" />
         <option value="$PROJECT_DIR$/www/application/views/content.php" />
+        <option value="$PROJECT_DIR$/www/database.sql" />
+        <option value="$PROJECT_DIR$/www/html/assets/js/profile.js" />
+        <option value="$PROJECT_DIR$/www/application/config/database.php" />
+        <option value="$PROJECT_DIR$/www/application/controllers/User.php" />
       </list>
     </option>
   </component>
@@ -446,12 +435,12 @@
       <workItem from="1545092908383" duration="593000" />
       <workItem from="1545093551077" duration="1737000" />
       <workItem from="1546564512378" duration="1145000" />
-      <workItem from="1546570394491" duration="11783000" />
+      <workItem from="1546570394491" duration="14099000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15320000" />
+    <option name="totallyTimeSpent" value="17636000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1382" height="754" extended-state="6" />
@@ -542,20 +531,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/application/config/database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="78" column="24" selection-start-line="78" selection-start-column="24" selection-end-line="78" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/html/assets/css/content.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1311">
-          <caret line="88" column="41" selection-start-line="88" selection-start-column="41" selection-end-line="88" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/application/views/slide_bar/header.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -587,13 +562,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/application/models/User_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="112" column="36" selection-start-line="112" selection-start-column="20" selection-end-line="112" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/application/config/routes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="27">
@@ -601,24 +569,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/database.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="181" column="217" selection-start-line="181" selection-start-column="217" selection-end-line="181" selection-end-column="217" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Desktop/content.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="69">
           <caret line="3" lean-forward="true" selection-end-line="123" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/html/assets/js/content.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2139">
-          <caret line="123" selection-start-line="123" selection-end-line="123" />
         </state>
       </provider>
     </entry>
@@ -636,27 +590,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/application/views/slide_bar/content_visitor.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-665">
-          <caret line="62" column="46" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/application/controllers/Page.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1196">
           <caret line="52" column="50" lean-forward="true" selection-start-line="52" selection-start-column="50" selection-end-line="52" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/application/views/content.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/html/assets/js/profile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="50" column="36" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -665,10 +602,69 @@
         <state relative-caret-position="-4469" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/application/models/User_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="112" column="36" selection-start-line="112" selection-start-column="20" selection-end-line="112" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/application/views/content.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="49" lean-forward="true" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/html/assets/js/profile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="33" selection-start-column="33" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/database.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="155" column="21" selection-start-line="155" selection-start-column="21" selection-end-line="155" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/application/config/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="79" column="29" selection-start-line="79" selection-start-column="19" selection-end-line="79" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/html/assets/css/content.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="157" column="19" lean-forward="true" selection-start-line="157" selection-start-column="19" selection-end-line="157" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/html/assets/js/content.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1081">
+          <caret line="47" column="44" selection-start-line="47" selection-start-column="44" selection-end-line="47" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/application/views/slide_bar/content_visitor.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="62" column="46" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/html/assets/js/rewrite_submit.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/application/controllers/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1180">
-          <caret line="1154" column="20" lean-forward="true" selection-start-line="1154" selection-start-column="20" selection-end-line="1154" selection-end-column="20" />
+        <state relative-caret-position="-21382">
+          <caret line="300" lean-forward="true" selection-start-line="300" selection-end-line="300" />
         </state>
       </provider>
     </entry>

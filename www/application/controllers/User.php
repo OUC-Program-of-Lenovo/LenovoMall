@@ -275,6 +275,31 @@ class User extends CI_Controller
     }
 
     /**
+     * Get user cart
+     * @return array
+     */
+    public function get_user_cart()
+    {
+        $carts = $this->user_model->get_user_cart($this->session->user_id);
+        $value = array();
+        if($carts !== '|')
+        {
+            $cart = explode('|', $carts);
+            for($i=1; $i<count($cart) - 1; $i++)
+            {
+                if(array_key_exists($cart[$i], $value) === true)
+                {
+                    $value[$cart[$i]]++;
+                }else {
+                    $value[$cart[$i]] = 1;
+                }
+
+            }
+        }
+        return $value;
+    }
+
+    /**
      * Set session by user id
      * @param $user_id: int
      */
@@ -1300,7 +1325,8 @@ class User extends CI_Controller
 
         echo json_encode(array(
             'status' => 1,
-            'message' => 'Add item success!'
+            'message' => 'Add item success!',
+            'value' => $this->get_user_cart()
         ));
     }
 
@@ -1325,25 +1351,9 @@ class User extends CI_Controller
             )));
         }
 
-        $carts = $this->user_model->get_user_cart($this->session->user_id);
-        $value = array();
-        if($carts !== '|')
-        {
-            $cart = explode('|', $carts);
-            for($i=1; $i<count($cart) - 1; $i++)
-            {
-                if(array_key_exists($cart[$i], $value) === true)
-                {
-                    $value[$cart[$i]]++;
-                }else {
-                    $value[$cart[$i]] = 1;
-                }
-
-            }
-        }
         echo json_encode(array(
             'status' => 1,
-            'value' => $value
+            'value' => $this->get_user_cart()
         ));
     }
 
