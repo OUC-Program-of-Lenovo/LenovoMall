@@ -99,15 +99,16 @@ function load_users() {
                     'username': 'Username',
                     'email': 'Email',
                     'phone': 'Phone',
-                    'registe_time': 'Registe Time',
-                    'registe_ip': 'Registe IP',
+                    'regist_time': 'Registe Time',
+                    'regist_ip': 'Registe IP',
                     'actived': 'Actived',
-                    'usertype': 'Admin',
+                    'user_type': 'Admin',
                     'ban': 'Ban',
                 };
+                console.log(msg.value);
                 var available_keys = Object.keys(available);
                 var user_info = msg.value;
-                var checkbox = ['actived', 'usertype', 'ban'];
+                var checkbox = ['actived', 'user_type', 'ban'];
                 var html = '';
                 html += '<nav class="navbar navbar-default" role="navigation">';
                 html += '<div class="container-fluid"><div class="navbar-header">';
@@ -125,7 +126,7 @@ function load_users() {
                         html += '<td>';
                         if (available_keys.length - j > 3) {
                             html += '<span class="admin-users-value">';
-                            if (j == 9) {
+                            if (j == 4) {
                                 html += TimeStamp2Date(user_info[i][available_keys[j]]);
                             } else {
                                 html += user_info[i][available_keys[j]];
@@ -133,11 +134,11 @@ function load_users() {
                             html += '</span>';
                         } else {
                             html += '<input class="admin-users-value-checkbox ';
-                            if (j == 11) {
+                            if (j == 6) {
                                 html += 'actived-checkbox';
-                            } else if (j == 12) {
+                            } else if (j == 7) {
                                 html += 'admin-checkbox';
-                            } else if (j == 13) {
+                            } else if (j == 8) {
                                 html += 'ban-checkbox';
                             }
                             html += '" type="checkbox" ';
@@ -225,13 +226,13 @@ function load_users() {
     });
 }
 
-function load_challenges() {
+function load_items() {
     var container = $(".content-container");
     container.html('');
     html = '<div class="admin-challenge"><nav class="navbar navbar-default" role="navigation"><div class="container-fluid">';
     html += '<div class="navbar-header"><a class="navbar-brand" href="#">Challenges</a></div>';
     html += '<div><button type="button" class="admin-challenge-create btn btn-default navbar-btn">Create</button></div></div></nav></div>';
-    var url = '/admin/challenge/all';
+    var url = '/admin/items/all';
     $.ajax({
         type: "GET",
         url: url,
@@ -261,13 +262,13 @@ function load_challenges() {
             var available_keys = Object.keys(available);
             var challenge_info = msg.value;
             var checkbox = ['fixing'];
-            html += '<div class="table-responsive admin-challenges"><table class="table table-hover">';
+            html += '<div class="table-responsive admin-items"><table class="table table-hover">';
             html += '<thead><tr>';
             for (var i = 0; i < available_keys.length; i++) {
-                html += '<th><span class="admin-challenges-key">' + available[available_keys[i]] + '</th>';
+                html += '<th><span class="admin-items-key">' + available[available_keys[i]] + '</th>';
             }
-            html += '<th><span class="admin-challenges-key">' + 'Edit' + '</th>';
-            html += '<th><span class="admin-challenges-key">' + 'Del' + '</th>';
+            html += '<th><span class="admin-items-key">' + 'Edit' + '</th>';
+            html += '<th><span class="admin-items-key">' + 'Del' + '</th>';
             html += '</span></tr></thead><tbody>';
             if (challenge_info != null) {
                 for (var i = 0; i < challenge_info.length; i++) {
@@ -275,11 +276,11 @@ function load_challenges() {
                     for (var j = 0; j < available_keys.length; j++) {
                         html += '<td>';
                         if (available_keys.length - j > 1) {
-                            html += '<span class="admin-challenges-value">';
+                            html += '<span class="admin-items-value">';
                             html += challenge_info[i][available_keys[j]];
                             html += '</span>';
                         } else {
-                            html += '<input class="admin-challenges-value-checkbox online-checkbox" type="checkbox" ';
+                            html += '<input class="admin-items-value-checkbox online-checkbox" type="checkbox" ';
                             if (challenge_info[i][available_keys[j]] == 0) {
                                 html += 'checked';
                             }
@@ -287,8 +288,8 @@ function load_challenges() {
                         }
                         html += '</td>';
                     }
-                    html += '<td><input class="admin-challenges-edit" type="button" value="Edit"/></td>';
-                    html += '<td><input class="admin-challenges-del" type="button" value="Delete"/></td>';
+                    html += '<td><input class="admin-items-edit" type="button" value="Edit"/></td>';
+                    html += '<td><input class="admin-items-del" type="button" value="Delete"/></td>';
                     html += '</tr>';
                 }
             }
@@ -327,7 +328,7 @@ function load_challenges() {
                 challenge_blur(this, 'flag');
             });
 
-            $('.admin-challenges-value-checkbox').on('click', function() {
+            $('.admin-items-value-checkbox').on('click', function() {
                 var url = '';
                 var challenge_id = $(this).parent().parent().children('td:first-child').text();
                 if (this.checked == true) {
@@ -354,7 +355,7 @@ function load_challenges() {
                     }
                 });
             });
-            $('.admin-challenges-edit').on('click', function() {
+            $('.admin-items-edit').on('click', function() {
                 var online = $(this).parent().parent().children('td:nth-child(13)').children()[0].checked;
                 if (online == true) {
                     show_pnotify("Error!", "Please offline this challenge before update it!", "error");
@@ -372,10 +373,10 @@ function load_challenges() {
                     $('#admin-challenge-update-description')[0].value = description;
                     $('#admin-challenge-update-score')[0].value = score;
                     $('#admin-challenge-update-flag')[0].value = flag;
-                    $('.admin-challenges-update-modal').addClass('is-visible');
+                    $('.admin-items-update-modal').addClass('is-visible');
                     $('.admin-update-challenge').submit(function(e) {
                         e.preventDefault();
-                        if ($('.admin-challenges-update-modal').hasClass('is-visible') == false) return;
+                        if ($('.admin-items-update-modal').hasClass('is-visible') == false) return;
                         var id = challenge_id;
                         var name_new = e.target.children[0].children[2].value;
                         var description_new = e.target.children[1].children[1].value;
@@ -383,11 +384,11 @@ function load_challenges() {
                         var score_new = e.target.children[3].children[2].value;
                         var resource_new = e.target.children[4].children[2].value;
                         var flag_new = e.target.children[5].children[2].value;
-                        update_challenge(id, name_new, description_new, type_new, score_new, resource_new, flag_new);
+                        update_item(id, name_new, description_new, type_new, score_new, resource_new, flag_new);
                     });
                 }
             });
-            $('.admin-challenges-del ').on('click', function() {
+            $('.admin-items-del ').on('click', function() {
                 var challenge_id = $(this).parent().parent().children('td:first-child').text();
                 win.confirm(
                     'Warring',
@@ -407,7 +408,7 @@ function load_challenges() {
                             success: function(msg) {
                                 if (msg.status == 1) {
                                     show_pnotify("Success!", msg.message, "success");
-                                    load_challenges();
+                                    load_items();
                                 } else {
                                     show_pnotify("Failed!", msg.message, "error");
                                 }
@@ -417,16 +418,16 @@ function load_challenges() {
                 );
             });
             $('.admin-challenge-create').on('click', function() {
-                $('.admin-challenges-create-modal').addClass('is-visible');
+                $('.admin-items-create-modal').addClass('is-visible');
             });
         }
     });
 }
 
-function create_challenge(name, description, type, score, resource, flag, fixing) {
+function create_item(name, description, type, score, resource, flag, fixing) {
     $.ajax({
         type: "POST",
-        url: "/admin/challenge/create",
+        url: "/admin/items/create",
         dataType: "json",
         data: {
             "name": name,
@@ -438,7 +439,7 @@ function create_challenge(name, description, type, score, resource, flag, fixing
             "fixing": fixing
         },
         beforeSend: function() {
-            $('.admin-challenges-create-modal').removeClass('is-visible');
+            $('.admin-items-create-modal').removeClass('is-visible');
             NProgress.start();
         },
         complete: function() {
@@ -447,7 +448,7 @@ function create_challenge(name, description, type, score, resource, flag, fixing
         success: function(msg) {
             if (msg.status == 1) {
                 show_pnotify("Success!", msg.message, "success");
-                load_challenges();
+                load_items();
             } else {
                 show_pnotify("Failed!", msg.message, "error");
             }
@@ -455,9 +456,9 @@ function create_challenge(name, description, type, score, resource, flag, fixing
     });
 }
 
-function update_challenge(id, name, description, type, score, resource, flag) {
+function update_item(id, name, description, type, score, resource, flag) {
     $.ajax({
-        url: '/admin/challenge/update/' + id,
+        url: '/admin/items/update/' + id,
         type: 'POST',
         dataType: 'json',
         data: {
@@ -469,7 +470,7 @@ function update_challenge(id, name, description, type, score, resource, flag) {
             'flag': flag
         },
         beforeSend: function() {
-            $('.admin-challenges-update-modal').removeClass('is-visible');
+            $('.admin-items-update-modal').removeClass('is-visible');
             NProgress.start();
         },
         complete: function() {
@@ -478,7 +479,7 @@ function update_challenge(id, name, description, type, score, resource, flag) {
         success: function(msg) {
             if (msg.status == 1) {
                 show_pnotify("Success!", msg.message, "success");
-                load_challenges();
+                load_items();
             } else {
                 show_pnotify("Failed!", msg.message, "error");
             }
@@ -499,6 +500,6 @@ $(document).ready(function() {
         if (e.target.children[6].children[1].checked == true) {
             fixing = 0;
         }
-        create_challenge(name, description, type, score, resource, flag, fixing);
+        create_item(name, description, type, score, resource, flag, fixing);
     });
 });

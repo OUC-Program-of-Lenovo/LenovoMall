@@ -19,7 +19,7 @@
                 <a href="javascript:load_users();">Users</a>
             </li>
             <li>
-                <a href="javascript:load_challenges();">Goods</a>
+                <a href="javascript:load_items();">Goods</a>
             </li>
             <li>
                 <a href="javascript:;">Logs</a>
@@ -82,9 +82,9 @@
     <i class="fa fa-bars"></i>
 </a>
 
-<div class="cd-user-modal admin-challenges-modal admin-challenges-create-modal">
+<div class="cd-user-modal admin-items-modal admin-items-create-modal">
     <div class="cd-user-modal-container">
-        <div id="cd-admin-challenges">
+        <div id="cd-admin-items">
             <form class="cd-form admin-create-challenge" action="/challenge/create" method="POST">
                 <p class="fieldset">
                     <label class="col-lg-2 control-label admin-challenge-label">Name</label>
@@ -140,9 +140,9 @@
     </div>
 </div>
 
-<div class="cd-user-modal admin-challenges-modal admin-challenges-update-modal">
+<div class="cd-user-modal admin-items-modal admin-items-update-modal">
     <div class="cd-user-modal-container">
-        <div id="cd-admin-challenges">
+        <div id="cd-admin-items">
             <form class="cd-form admin-update-challenge" action="/challenge/update/" method="POST">
                 <p class="fieldset">
                     <label class="col-lg-2 control-label admin-challenge-label">Name</label>

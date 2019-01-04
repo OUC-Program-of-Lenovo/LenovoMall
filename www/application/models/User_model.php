@@ -236,7 +236,7 @@ class User_model extends CI_Model
      *   username: string <= 16
      *   password: string == 32
      *   salt: string < 5
-     *   usertype: 0 or 1 or 2 or 3
+     *   user_type: 0 or 1 or 2 or 3
      *   phone: string == 11
      *   avatar: string <= 32
      *   email: string <= 50
@@ -318,7 +318,7 @@ class User_model extends CI_Model
             $val = '1';
         }
         return $this->db
-            ->set('usertype', $val)
+            ->set('user_type', $val)
             ->where('user_id', $user_id)
             ->update('users');
     }

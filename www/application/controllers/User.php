@@ -22,9 +22,9 @@ class User extends CI_Controller
 
     /**
      * Check string length from min to max
-     * @param $word; string
-     * @param $min: int
-     * @param $max: int
+     * @param $word ; string
+     * @param $min : int
+     * @param $max : int
      * @return bool
      */
     public function check_length($word, $min, $max)
@@ -38,7 +38,7 @@ class User extends CI_Controller
 
     /**
      * Check user name length from 4 to 16
-     * @param $username: string
+     * @param $username : string
      * @return bool
      */
     public function check_username_length($username)
@@ -48,7 +48,7 @@ class User extends CI_Controller
 
     /**
      * Check password length from 6 to 16
-     * @param $password: string
+     * @param $password : string
      * @return bool
      */
     public function check_password_length($password)
@@ -58,7 +58,7 @@ class User extends CI_Controller
 
     /**
      * Check phone length from 6 to 16
-     * @param $phone: string
+     * @param $phone : string
      * @return bool
      */
     public function check_phone_length($phone)
@@ -72,8 +72,8 @@ class User extends CI_Controller
 
     /**
      * Check bad chars
-     * @param $word: string
-     * @param $bad_chars: string
+     * @param $word : string
+     * @param $bad_chars : string
      * @return bool
      */
     public function check_bad_chars($word, $bad_chars)
@@ -92,7 +92,7 @@ class User extends CI_Controller
 
     /**
      * Check username bad chars
-     * @param $username: string
+     * @param $username : string
      * @return bool
      */
     public function check_username_bad_chars($username)
@@ -102,7 +102,7 @@ class User extends CI_Controller
 
     /**
      * Check password bad chars
-     * @param $password: string
+     * @param $password : string
      * @return bool
      */
     public function check_password_bad_chars($password)
@@ -116,23 +116,12 @@ class User extends CI_Controller
 
     /**
      * Check email format
-     * @param $email: string
+     * @param $email : string
      * @return bool
      */
     public function check_email($email)
     {
         return valid_email($email);
-    }
-
-
-    /**
-     * Check user id existed
-     * @param $user_id: int
-     * @return bool
-     */
-    public function do_check_user_id_existed($user_id)
-    {
-        return $this->user_model->is_user_id_existed($user_id);
     }
 
     /**
@@ -141,9 +130,9 @@ class User extends CI_Controller
 
     /**
      * Send email
-     * @param $subject: stirng
-     * @param $content: string
-     * @param $target: string
+     * @param $subject : stirng
+     * @param $content : string
+     * @param $target : string
      * @return bool
      */
     public function send_email($subject, $content, $target)
@@ -158,8 +147,8 @@ class User extends CI_Controller
 
     /**
      * Send active code to $target
-     * @param $active_code: string
-     * @param $target: string
+     * @param $active_code : string
+     * @param $target : string
      * @return bool
      */
     public function send_active_code($active_code, $target)
@@ -171,8 +160,8 @@ class User extends CI_Controller
 
     /**
      * Encrypt password
-     * @param $password: string
-     * @param $salt: string
+     * @param $password : string
+     * @param $salt : string
      * @return string
      */
     public function get_encrypted_password($password, $salt)
@@ -200,7 +189,7 @@ class User extends CI_Controller
 
     /**
      * Complete user information
-     * @param $user_info: array
+     * @param $user_info : array
      * @return array
      */
     public function complete_user_info($user_info)
@@ -244,7 +233,7 @@ class User extends CI_Controller
 
     /**
      * Check overdue
-     * @param $alive_time: int
+     * @param $alive_time : int
      * @return bool
      */
     public function is_overdue($alive_time)
@@ -254,7 +243,7 @@ class User extends CI_Controller
 
     /**
      * Check user actived
-     * @param $user_id: int
+     * @param $user_id : int
      * @return bool
      */
     public function is_user_actived($user_id)
@@ -264,7 +253,7 @@ class User extends CI_Controller
 
     /**
      * Set session by username
-     * @param $username: string
+     * @param $username : string
      */
     public function set_session_by_username($username)
     {
@@ -282,15 +271,12 @@ class User extends CI_Controller
     {
         $carts = $this->user_model->get_user_cart($this->session->user_id);
         $value = array();
-        if($carts !== '|')
-        {
+        if ($carts !== '|') {
             $cart = explode('|', $carts);
-            for($i=1; $i<count($cart) - 1; $i++)
-            {
-                if(array_key_exists($cart[$i], $value) === true)
-                {
+            for ($i = 1; $i < count($cart) - 1; $i++) {
+                if (array_key_exists($cart[$i], $value) === true) {
                     $value[$cart[$i]]++;
-                }else {
+                } else {
                     $value[$cart[$i]] = 1;
                 }
 
@@ -301,7 +287,7 @@ class User extends CI_Controller
 
     /**
      * Set session by user id
-     * @param $user_id: int
+     * @param $user_id : int
      */
     public function set_session_by_user_id($user_id)
     {
@@ -320,7 +306,7 @@ class User extends CI_Controller
     /**
      * Check password
      * @param $user_id
-     * @param $password: clear text
+     * @param $password : clear text
      * @return bool
      */
     public function check_password($user_id, $password)
@@ -699,8 +685,7 @@ class User extends CI_Controller
         }
 
         /* Whether username exists */
-        if($this->user_model->is_username_existed($user_info['username']) === false)
-        {
+        if ($this->user_model->is_username_existed($user_info['username']) === false) {
             die(json_encode(array(
                 'status' => 0,
                 'message' => 'Username does not exist!'
@@ -723,15 +708,12 @@ class User extends CI_Controller
             )));
         }
 
-        if($this->user_model->login($user_info['user_id'], time(), $this->input->ip_address()))
-        {
+        if ($this->user_model->login($user_info['user_id'], time(), $this->input->ip_address())) {
             echo json_encode(array(
                 'status' => 1,
                 'message' => 'Login success!',
-                ));
-        }
-        else
-        {
+            ));
+        } else {
             die(json_encode(array(
                 'status' => 0,
                 'message' => 'Login failed! Please concat admin.'
@@ -932,7 +914,7 @@ class User extends CI_Controller
             'message' => 'Register successfully! Please activate your account by login your email (' . $this->get_masked_email($user_info['email']) . ') and clicking the activation link in the activation email!',
         ));
     }
-    
+
     /**
      * [API] Active
      * Permission:
@@ -1130,7 +1112,7 @@ class User extends CI_Controller
         }
 
         $filename = md5(md5($this->session->username));
-        $ext = strtolower(pathinfo( $_FILES["avatar"]["name"], PATHINFO_EXTENSION));
+        $ext = strtolower(pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION));
 
         /* Upload config */
         $config['upload_path'] = '../html/upload/images/avatar/';
@@ -1144,24 +1126,21 @@ class User extends CI_Controller
         $this->load->library('upload', $config);
 
 
-        if ( !$this->upload->do_upload('avatar'))
-        {
+        if (!$this->upload->do_upload('avatar')) {
             die(json_encode(array(
                 'status' => 0,
                 'message' => 'Upload avatar failed! Please check image format, only jpg, png and gif are allowed!'
             )));
         }
 
-        if($this->user_model->update_user_avatar(
-            $this->session->user_id, $filename.'.'.$ext
-            ))
-        {
+        if ($this->user_model->update_user_avatar(
+            $this->session->user_id, $filename . '.' . $ext
+        )) {
             echo json_encode(array(
-            'status' => 1,
-            'message' => 'Update success!',
-        ));
-        }else
-        {
+                'status' => 1,
+                'message' => 'Update success!',
+            ));
+        } else {
             die(json_encode(array(
                 'status' => 0,
                 'message' => 'Update avatar failed!',
@@ -1224,6 +1203,80 @@ class User extends CI_Controller
     }
 
     /**
+     * [API] Update user status
+     * Permission:
+     *      Administrator
+     * Method:
+     *      Post and Get
+     * Param:
+     *      segment 4
+     *      type: status type(actived, usertype, ban)
+     *      value: 1 or 0
+     * Return(Json):
+     *      status: 1 or 0
+     *      message
+     */
+    public function update_status()
+    {
+        if ($this->is_logined() === false || $this->is_admin() === false) {
+            die(json_encode(array(
+                'status' => 0,
+                'message' => 'You don\'t have permission to access this!'
+            )));
+        }
+
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('type', 'Type', 'trim|required');
+        $this->form_validation->set_rules('value', 'Value', 'trim|required');
+
+        if ($this->form_validation->run() === FALSE) {
+            die(json_encode(array(
+                'status' => 0,
+                'message' => 'Form validation failed!'
+            )));
+        }
+
+        /* Post data */
+        $type = $this->input->post('type');
+        $value = intval($this->input->post('value'));
+        $user_id = intval($this->uri->segment(4));
+
+        /* Form validation */
+        if ($this->user_model->is_user_id_existed($user_id) === false) {
+            die(json_encode(array(
+                'status' => 0,
+                'message' => 'User ID doesn\'t exists!'
+            )));
+        } elseif ($value !== 0 && $value !== 1) {
+            die(json_encode(array(
+                'status' => 0,
+                'message' => 'Invalid value!'
+            )));
+        } elseif ($type !== 'actived' && $type !== 'usertype' && $type !== 'ban') {
+            die(json_encode(array(
+                'status' => 0,
+                'message' => 'Invalid type!'
+            )));
+        }
+
+        $status = ($value === 1) ? true : false;
+
+        if ($type === 'actived') {
+            $this->user_model->set_actived($user_id, $status);
+        } elseif ($type === 'usertype') {
+            $this->user_model->set_admin($user_id, $status);
+        } elseif ($type === 'ban') {
+            $this->user_model->ban_user($user_id, $status);
+        }
+        echo json_encode(array(
+            'status' => 1,
+            'message' => 'Update success!',
+        ));
+    }
+
+    /**
      * [API] Get all user information
      * Permission:
      *      Administrators
@@ -1272,10 +1325,10 @@ class User extends CI_Controller
 
         $carts = $this->user_model->get_user_cart($this->session->user_id);
         $item_id = intval($this->uri->segment(4));
-        $target = '|'.strval($item_id).'|';
+        $target = '|' . strval($item_id) . '|';
         $pos = strpos($carts, $target);
-        if($pos !== false) {
-            $_carts = substr($carts, 0, $pos+1) . substr($carts, $pos + strlen($target));
+        if ($pos !== false) {
+            $_carts = substr($carts, 0, $pos + 1) . substr($carts, $pos + strlen($target));
             $this->user_model->update_user_cart($this->session->user_id, $_carts);
             echo json_encode(array(
                 'status' => 1,
@@ -1312,15 +1365,14 @@ class User extends CI_Controller
 
         $carts = $this->user_model->get_user_cart($this->session->user_id);
         $cart = explode('|', $carts);
-        if(count($cart) - 1 >= 20)
-        {
+        if (count($cart) - 1 >= 20) {
             die(json_encode(array(
                 'status' => 0,
                 'message' => 'You can only add up to 20 items!'
             )));
         }
         $item_id = intval($this->uri->segment(4));
-        $carts .= (strval($item_id).'|');
+        $carts .= (strval($item_id) . '|');
         $this->user_model->update_user_cart($this->session->user_id, $carts);
 
         echo json_encode(array(
@@ -1382,7 +1434,7 @@ class User extends CI_Controller
         $this->load->library('form_validation');
 
         $user_id = intval($this->uri->segment(4));
-        if ($this->do_check_user_id_existed($user_id) === false) {
+        if ($this->user_model->id_user_id_existed($user_id) === false) {
             die(json_encode(array(
                 'status' => 0,
                 'message' => 'User ID doesn\'t exists!'
@@ -1394,5 +1446,31 @@ class User extends CI_Controller
             'status' => 1,
             'message' => 'Update success!',
         ));
+    }
+
+    /**
+     * [API] Get all items information
+     * Permission:
+     *      Administrators
+     * Method:
+     *      Get
+     * Return(Json):
+     *      status: 1 or 0
+     *      message/value: reason/information
+     */
+    public function get_all_items_info()
+    {
+        if ($this->is_logined() === false || $this->is_admin() === false) {
+            die(json_encode(array(
+                'status' => 0,
+                'message' => 'You don\'t have permission to access this!'
+            )));
+        } else {
+            $all_items_info = $this->item_model->get_all_items_info();
+            echo json_encode(array(
+                'status' => 1,
+                'value' => $all_items_info
+            ));
+        }
     }
 }

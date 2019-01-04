@@ -78,6 +78,9 @@ $route['user/active/(:any)'] = 'user/active';
 $route['admin/user/all'] = 'user/get_all_user_info';
 $route['admin/user/update/(:num)'] = 'user/update_status';
 $route['admin/user/delete/(:num)'] = 'user/delete_user';
+$route['admin/items/all'] = 'user/get_all_items_info';
+$route['admin/items/create'] = 'user/get_all_items_info';
+$route['admin/items/update/(:num)'] = 'user/get_all_items_info';
 
 /* Index */
 $route['(:any)'] = 'page/index';
