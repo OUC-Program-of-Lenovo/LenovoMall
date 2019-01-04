@@ -6,15 +6,15 @@
         </div>
     </li>
 
-    <li class="cd-challenges">
+    <li class="cd-category">
         <div>
-            <span class="menu-icons fa fa-list-ul"></span>
+            <span class="menu-icons  fa fa-list-ul"></span>
             <a href="#">Category</a>
             <span class="the-btn fa fa-plus"></span>
         </div>
         <ul>
             <li>
-                <a href="#">None</a>
+                <a href="#">All</a>
             </li>
         </ul>
     </li>
@@ -57,9 +57,6 @@
 <a href="#" class="toggle-nav" id="bars">
     <i class="fa fa-bars"></i>
 </a>
-
-<div class="content-container">
-</div>
 
 <i class="hide-cart-container menu-icons glyphicon glyphicon-eye-open"></i>
 

@@ -1,15 +1,17 @@
 <ul id="toggle" class="slide-bar-left">
-    <li class="cd-write-up">
+    <li class="cd-category">
         <div>
-            <span class="menu-icons  fa fa-bookmark"></span>
-            <a href="#">Sidebar item 1</a><span class="the-btn fa fa-plus"></span>
+            <span class="menu-icons  fa fa-list-ul"></span>
+            <a href="#">Category</a>
+            <span class="the-btn fa fa-plus"></span>
         </div>
         <ul>
             <li>
-                <a href="#">Coming soon</a>
+                <a href="#">All</a>
             </li>
         </ul>
     </li>
+
     <li class="cd-tutorials">
         <div>
             <span class="menu-icons  fa fa-book"></span>

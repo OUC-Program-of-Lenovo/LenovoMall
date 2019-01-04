@@ -149,10 +149,6 @@ function check_password_length(password) {
     return check_length(password, 6, 16);
 }
 
-function check_student_id_length(id) {
-    return check_length(id, 11, 11);
-}
-
 function check_phone_length(phone) {
     return check_length(phone, 11, 11);
 }
@@ -188,13 +184,6 @@ function check_number_bad_chars(phnoe) {
         if (ascii > "9".charCodeAt(0) || ascii < "0".charCodeAt(0)) {
             return false;
         }
-    }
-    return true;
-}
-
-function check_grade(grade) {
-    if (grade.length != 8 || /^\d{4}$/.test(grade.substr(0, 4)) == false) {
-        return false;
     }
     return true;
 }

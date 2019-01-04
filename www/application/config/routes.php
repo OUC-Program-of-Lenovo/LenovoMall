@@ -64,6 +64,10 @@ $route['user/check/username'] = 'user/check_username_existed';
 $route['user/check/email'] = 'user/check_email_existed';
 $route['user/check/captcha'] = 'user/check_captcha_current';
 
+$route['user/cart'] = 'user/get_cart';
+$route['user/cart/add/(:num)'] = 'user/add_cart';
+$route['user/cart/delete/(:num)'] = 'user/delete_cart';
+
 $route['user/get_captcha'] = 'user/get_captcha';
 
 $route['user/active/(:any)'] = 'user/active';

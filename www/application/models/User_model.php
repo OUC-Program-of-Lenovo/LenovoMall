@@ -92,6 +92,33 @@ class User_model extends CI_Model
     }
 
     /**
+     * Get user cart by user id
+     * @param $user_id: int
+     * @return string: cart which looks like '1|2|5|7|1|3|5|'
+     */
+    public function get_user_cart($user_id)
+    {
+        $query = $this->db
+            ->where('user_id', $user_id)
+            ->get('users');
+        $result = $query->row_array();
+        return $result['shopping_cart'];
+    }
+
+    /**
+     * Update user cart
+     * @param $user_id: int
+     * @param $cart: string which looks like '1|2|5|7|88|1|'
+     */
+    public function update_user_cart($user_id, $cart)
+    {
+        $this->db
+            ->set(array('shopping_cart' => $cart))
+            ->where('user_id', $user_id)
+            ->update('users');
+    }
+
+    /**
      * Check if user was baned
      * @param $user_id: int
      * @return bool
@@ -109,14 +136,13 @@ class User_model extends CI_Model
      *  Update user phone, avatar, real name
      * @param $user_id: int
      * @param $phone: string
-     * @param $avatar: string
      */
     public function update_user_info($user_id, $phone)
     {
-        $this->db->where('user_id', $user_id);
-        $this->db->update('users', array(
-            'phone' => $phone
-        ));
+        $this->db
+            ->set(array('phone' => $phone))
+            ->where('user_id', $user_id)
+            ->update('users');
     }
 
     /**

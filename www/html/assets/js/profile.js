@@ -91,6 +91,8 @@ function get_personal_information() {
                     var phone = e.target.children[0].children[0].children[0].children[1].children[1].children[0].value;
                     update_user_info(phone);
                 });
+            } else {
+                show_pnotify("Failed!", msg.message, "error");
             }
         }
     });

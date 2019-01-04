@@ -1083,6 +1083,18 @@ class User extends CI_Controller
         }
     }
 
+    /**
+     * [API] Update user avatar
+     * Permission:
+     *      users which has login
+     * Method:
+     *      Post
+     * Param:
+     *      file
+     * Return(Json):
+     *      status: 1 or 0
+     *      message
+     */
     public function update_user_avatar()
     {
         if ($this->is_logined() === false) {
@@ -1139,7 +1151,7 @@ class User extends CI_Controller
      * Method:
      *      Post
      * Param:
-     *
+     *      segment 4
      * Return(Json):
      *      status: 1 or 0
      *      message
@@ -1210,6 +1222,129 @@ class User extends CI_Controller
                 'value' => $all_user_info
             ));
         }
+    }
+
+    /**
+     * [API] Delete an good from user cart
+     * Permission:
+     *      User which has logined
+     * Method:
+     *      Get
+     * Param:
+     *      segment 4
+     * Return(Json):
+     *      status: 1 or 0
+     *      message
+     */
+    public function delete_cart()
+    {
+        if ($this->is_logined() === false) {
+            die(json_encode(array(
+                'status' => 0,
+                'message' => 'You don\'t have permission to access this! Please login first!'
+            )));
+        }
+
+        $carts = $this->user_model->get_user_cart($this->session->user_id);
+        $item_id = intval($this->uri->segment(4));
+        $target = '|'.strval($item_id).'|';
+        $pos = strpos($carts, $target);
+        if($pos !== false) {
+            $_carts = substr($carts, 0, $pos+1) . substr($carts, $pos + strlen($target));
+            $this->user_model->update_user_cart($this->session->user_id, $_carts);
+            echo json_encode(array(
+                'status' => 1,
+                'message' => 'Delete success!'
+            ));
+        } else {
+            die(json_encode(array(
+                'status' => 0,
+                'message' => 'Item does not exists!'
+            )));
+        }
+    }
+
+    /**
+     * [API] Add an good to user cart
+     * Permission:
+     *      User which has logined
+     * Method:
+     *      Get
+     * Param:
+     *      segment 4
+     * Return(Json):
+     *      status: 1 or 0
+     *      message
+     */
+    public function add_cart()
+    {
+        if ($this->is_logined() === false) {
+            die(json_encode(array(
+                'status' => 0,
+                'message' => 'You don\'t have permission to access this! Please login first!'
+            )));
+        }
+
+        $carts = $this->user_model->get_user_cart($this->session->user_id);
+        $cart = explode('|', $carts);
+        if(count($cart) - 1 >= 20)
+        {
+            die(json_encode(array(
+                'status' => 0,
+                'message' => 'You can only add up to 20 items!'
+            )));
+        }
+        $item_id = intval($this->uri->segment(4));
+        $carts .= (strval($item_id).'|');
+        $this->user_model->update_user_cart($this->session->user_id, $carts);
+
+        echo json_encode(array(
+            'status' => 1,
+            'message' => 'Add item success!'
+        ));
+    }
+
+    /**
+     * [API] Get user cart
+     * Permission:
+     *      User which has logined
+     * Method:
+     *      Get
+     * Param:
+     *      None
+     * Return(Json):
+     *      status: 1 or 0
+     *      message/value: reason/cart
+     */
+    public function get_cart()
+    {
+        if ($this->is_logined() === false) {
+            die(json_encode(array(
+                'status' => 0,
+                'message' => 'You don\'t have permission to access this! Please login first!'
+            )));
+        }
+
+        $carts = $this->user_model->get_user_cart($this->session->user_id);
+        $value = array();
+        if($carts !== '|')
+        {
+            $cart = explode('|', $carts);
+            for($i=1; $i<count($cart) - 1; $i++)
+            {
+                if(array_key_exists($cart[$i], $value) === true)
+                {
+                    $value[$cart[$i]]++;
+                }else {
+                    $value[$cart[$i]] = 1;
+                }
+
+            }
+        }
+        echo json_encode(array(
+            'status' => 1,
+            'value' => $value
+        ));
     }
 
     /**

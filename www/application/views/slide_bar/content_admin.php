@@ -30,15 +30,15 @@
         </ul>
     </li>
 
-    <li class="cd-challenges">
+    <li class="cd-category">
         <div>
             <span class="menu-icons  fa fa-list-ul"></span>
-            <a href="#">Challenge</a>
+            <a href="#">Category</a>
             <span class="the-btn fa fa-plus"></span>
         </div>
         <ul>
             <li>
-                <a href="#">None</a>
+                <a href="javascript:;">All</a>
             </li>
         </ul>
     </li>
@@ -81,9 +81,6 @@
 <a href="#" class="toggle-nav" id="bars">
     <i class="fa fa-bars"></i>
 </a>
-
-<div class="content-container">
-</div>
 
 <div class="cd-user-modal admin-challenges-modal admin-challenges-create-modal">
     <div class="cd-user-modal-container">
