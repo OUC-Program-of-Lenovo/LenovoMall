@@ -111,12 +111,11 @@ class User_model extends CI_Model
      * @param $phone: string
      * @param $avatar: string
      */
-    public function update_user_info($user_id, $phone, $avatar)
+    public function update_user_info($user_id, $phone)
     {
         $this->db->where('user_id', $user_id);
         $this->db->update('users', array(
-            'phone' => $phone,
-            'avatar' => $avatar
+            'phone' => $phone
         ));
     }
 
@@ -172,6 +171,20 @@ class User_model extends CI_Model
     {
         $query = $this->db->get('users');
         return $query->result();
+    }
+
+    /**
+     * Update user avatar by user id
+     * @param $user_id: int
+     * @param $avatar: string. avatar file name.
+     * @return bool
+     */
+    public function update_user_avatar($user_id, $avatar)
+    {
+        return $this->db
+            ->set(array('avatar' => $avatar))
+            ->where('user_id', $user_id)
+            ->update('users');
     }
 
     /**
