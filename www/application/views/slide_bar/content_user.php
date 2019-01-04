@@ -1,18 +1,4 @@
 <ul id="toggle" class="slide-bar-left">
-
-    <li class="cd-index">
-        <div>
-            <span class="menu-icons fa fa-list-ul"></span>
-            <a href="#">Category</a>
-            <span class="the-btn fa fa-plus"></span>
-        </div>
-        <ul>
-            <li>
-                <a href="#">All</a>
-            </li>
-        </ul>
-    </li>
-
     <li class="cd-mine">
         <div class="active border">
             <span class="menu-icons fa fa-home"></span>
@@ -20,15 +6,28 @@
         </div>
     </li>
 
-    <li class="cd-write-up">
+    <li class="cd-challenges">
         <div>
-            <span class="menu-icons fa fa-bookmark"></span>
-            <a href="#">Orders</a>
+            <span class="menu-icons fa fa-list-ul"></span>
+            <a href="#">Category</a>
             <span class="the-btn fa fa-plus"></span>
         </div>
         <ul>
             <li>
-                <a href="#">All</a>
+                <a href="#">None</a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="cd-write-up">
+        <div>
+            <span class="menu-icons fa fa-bookmark"></span>
+            <a href="#">Side Bar 1</a>
+            <span class="the-btn fa fa-plus"></span>
+        </div>
+        <ul>
+            <li>
+                <a href="#">None</a>
             </li>
         </ul>
     </li>
@@ -36,7 +35,7 @@
     <li class="cd-tutorials">
         <div>
             <span class="menu-icons  fa fa-book"></span>
-            <a href="#">News</a>
+            <a href="#">Side Bar 2</a>
             <span class="the-btn fa fa-plus"></span>
         </div>
         <ul>
@@ -76,7 +75,13 @@
             </tr>
             </thead>
             <tbody class="cart-tbody">
+                <tr>
+                    <td>笔记本1</td>
+                    <td>￥5000.00</td>
+                    <td>2</td>
+                </tr>
             </tbody>
         </table>
+        <button id="cart_submit">提交</button>
     </div>
 </div>
