@@ -210,7 +210,7 @@ class User extends CI_Controller
         $user_info['salt'] = $this->get_salt();
         $user_info['password'] = $this->get_encrypted_password($user_info['password'], $user_info['salt']);
 
-        $user_info['avatar'] = '/upload/images/avatar/0.jpg';
+        $user_info['avatar'] = '/uopload/images/avatar/0.jpg';
 
         $user_info['regist_time'] = $time;
         $user_info['regist_ip'] = $this->input->ip_address();
@@ -1080,55 +1080,6 @@ class User extends CI_Controller
                 'status' => 1,
                 'value' => $user_info
             ));
-        }
-    }
-
-    public function update_user_avatar()
-    {
-        if ($this->is_logined() === false) {
-            die(json_encode(array(
-                'status' => 0,
-                'message' => 'You don\'t have permission to access this! Please login first!'
-            )));
-        }
-
-        $filename = md5(md5($this->session->username));
-        $ext = strtolower(pathinfo( $_FILES["avatar"]["name"], PATHINFO_EXTENSION));
-
-        /* Upload config */
-        $config['upload_path'] = '../html/upload/images/avatar/';
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config['file_name'] = $filename;
-        $config['file_ext_tolower'] = true;
-        $config['overwrite'] = true;
-        $config['max_width'] = 1024;
-        $config['max_height'] = 768;
-        $config['max_size'] = '102400';
-        $this->load->library('upload', $config);
-
-
-        if ( !$this->upload->do_upload('avatar'))
-        {
-            die(json_encode(array(
-                'status' => 0,
-                'message' => 'Upload avatar failed! Please check image format, only jpg, png and gif are allowed!'
-            )));
-        }
-
-        if($this->user_model->update_user_avatar(
-            $this->session->user_id, $filename.'.'.$ext
-            ))
-        {
-            echo json_encode(array(
-            'status' => 1,
-            'message' => 'Update success!',
-        ));
-        }else
-        {
-            die(json_encode(array(
-                'status' => 0,
-                'message' => 'Update avatar failed!',
-            )));
         }
     }
 
