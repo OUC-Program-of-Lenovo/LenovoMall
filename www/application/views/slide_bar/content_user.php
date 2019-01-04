@@ -76,13 +76,7 @@
             </tr>
             </thead>
             <tbody class="cart-tbody">
-                <tr>
-                    <td>笔记本1</td>
-                    <td>￥5000.00</td>
-                    <td>2</td>
-                </tr>
             </tbody>
         </table>
-        <button id="cart_submit">提交</button>
     </div>
 </div>
