@@ -80,20 +80,13 @@ CREATE TABLE `items` (
   `number` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
   `price` float NOT NULL,
-  `model` varchar(32) NOT NULL,
   `amount` int(11) NOT NULL,
-  `surplus` int(11) NOT NULL,
   `type` varchar(64) NOT NULL,
   `avatar` varchar(32) NOT NULL,
-  `album` varchar(64) NOT NULL,
   `size` varchar(16) NOT NULL,
   `description` text NOT NULL,
   `add_time` varchar(10) NOT NULL,
   `active` tinyint(4) NOT NULL DEFAULT '0',
-  `weight` int(11) NOT NULL,
-  `keywords` varchar(64) NOT NULL,
-  `brief_des` varchar(256) NOT NULL,
-  `remark` varchar(256) NOT NULL,
   PRIMARY KEY (`item_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

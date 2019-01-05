@@ -100,33 +100,35 @@
                 <div class="col-lg-10 admin-challenge-type">
                     <label class="col-lg-2 control-label admin-challenge-label">Type</label>
                     <select name="type" class="admin-challenge-type selectpicker show-tick form-control">
-                        <option value="web">Web</option>
-                        <option value="pwn">Pwn</option>
-                        <option value="reverse">Reverse</option>
-                        <option value="crypto">Crypto</option>
-                        <option value="misc">Misc</option>
-                        <option value="stego">Stego</option>
-                        <option value="forensics">Forensics</option>
-                        <option value="other">Other</option>
+                        <option value="a">游戏本</option>
+                        <option value="b">商务本</option>
+                        <option value="c">二合一本</option>
+                        <option value="d">轻薄本 </option>
                     </select>
                 </div>
                 <p class="fieldset">
-                    <label class="col-lg-2 control-label admin-challenge-label">Score</label>
-                    <label class="image-replace admin-challenge-label-score">Score</label>
-                    <input name="score" class="full-width2 has-padding has-border admin-challenge-score" type="text"
-                           placeholder="Score">
+                    <label class="col-lg-2 control-label admin-challenge-label">Number</label>
+                    <label class="image-replace admin-challenge-label-score">Number</label>
+                    <input name="number" class="full-width2 has-padding has-border admin-challenge-score" type="text"
+                           placeholder="Number">
                 </p>
                 <p class="fieldset">
-                    <label class="col-lg-2 control-label admin-challenge-label">Resource</label>
-                    <label class="image-replace admin-challenge-label-resource">Resource</label>
-                    <input name="resource" class="full-width2 has-padding has-border admin-challenge-resource"
-                           type="text" placeholder="Resource">
+                    <label class="col-lg-2 control-label admin-challenge-label">Amount</label>
+                    <label class="image-replace admin-challenge-label-score">Amount</label>
+                    <input name="amount" class="full-width2 has-padding has-border admin-challenge-score" type="text"
+                           placeholder="Amount">
                 </p>
                 <p class="fieldset">
-                    <label class="col-lg-2 control-label admin-challenge-label">Flag</label>
-                    <label class="image-replace admin-challenge-label-flag">Flag</label>
-                    <input name="flag" class="full-width2 has-padding has-border admin-challenge-flag" type="text"
-                           placeholder="Flag">
+                    <label class="col-lg-2 control-label admin-challenge-label">Price</label>
+                    <label class="image-replace admin-challenge-label-score">Price</label>
+                    <input name="price" class="full-width2 has-padding has-border admin-challenge-score" type="text"
+                           placeholder="Price">
+                </p>
+                <p class="fieldset">
+                    <label class="col-lg-2 control-label admin-challenge-label">Size</label>
+                    <label class="image-replace admin-challenge-label-flag">Size</label>
+                    <input name="size" class="full-width2 has-padding has-border admin-challenge-flag" type="text"
+                           placeholder="Size">
                 </p>
                 <p class="fieldset">
                     <span>Online now</span>

@@ -1,9 +1,9 @@
 function check_score(elm) {
     if (trim_space(elm.value).length == 0) {
-        show_error(elm, "Please input score!");
+        show_error(elm, "Please input this!");
         trun_red(elm);
     } else if (check_number_bad_chars(trim_space(elm.value)) == false) {
-        show_error(elm, "Invalid score! Only numbers are allowed!");
+        show_error(elm, "Invalid input! Only numbers are allowed!");
         trun_red(elm);
     } else {
         trun_gray(elm);
@@ -230,9 +230,9 @@ function load_items() {
     var container = $(".content-container");
     container.html('');
     html = '<div class="admin-challenge"><nav class="navbar navbar-default" role="navigation"><div class="container-fluid">';
-    html += '<div class="navbar-header"><a class="navbar-brand" href="#">Challenges</a></div>';
+    html += '<div class="navbar-header"><a class="navbar-brand" href="#">Goods</a></div>';
     html += '<div><button type="button" class="admin-challenge-create btn btn-default navbar-btn">Create</button></div></div></nav></div>';
-    var url = '/admin/items/all';
+    var url = '/items';
     $.ajax({
         type: "GET",
         url: url,
@@ -245,29 +245,27 @@ function load_items() {
         },
         success: function(msg) {
             var available = {
-                'challenge_id': 'ID',
+                'item_id': 'ID',
                 'name': 'Name',
                 'description': 'Description',
-                'resource': 'Resource',
-                'flag_text': 'Flag',
-                'score': 'Score',
+                'number': 'Number',
+                'price': 'Price',
+                'amount': 'Amount',
                 'type': 'Type',
-                'online_time': 'Online time',
-                'visit_times': 'Visit',
-                'solved_times': 'Solved',
-                'submit_times': 'Submit',
-                'author_name': 'Author',
-                'fixing': 'Online'
+                'size': 'Size',
+                'add_time': 'Add Time',
+                'active': 'Online'
             };
             var available_keys = Object.keys(available);
-            var challenge_info = msg.value;
-            var checkbox = ['fixing'];
+            var challenge_info = msg.items;
+            challenge_info[0].add_time = TimeStamp2Date(challenge_info[0].add_time);
+            var checkbox = ['active'];
             html += '<div class="table-responsive admin-items"><table class="table table-hover">';
             html += '<thead><tr>';
             for (var i = 0; i < available_keys.length; i++) {
                 html += '<th><span class="admin-items-key">' + available[available_keys[i]] + '</th>';
             }
-            html += '<th><span class="admin-items-key">' + 'Edit' + '</th>';
+            // html += '<th><span class="admin-items-key">' + 'Edit' + '</th>';
             html += '<th><span class="admin-items-key">' + 'Del' + '</th>';
             html += '</span></tr></thead><tbody>';
             if (challenge_info != null) {
@@ -281,14 +279,14 @@ function load_items() {
                             html += '</span>';
                         } else {
                             html += '<input class="admin-items-value-checkbox online-checkbox" type="checkbox" ';
-                            if (challenge_info[i][available_keys[j]] == 0) {
+                            if (challenge_info[i][available_keys[j]] == 1) {
                                 html += 'checked';
                             }
                             html += '/>';
                         }
                         html += '</td>';
                     }
-                    html += '<td><input class="admin-items-edit" type="button" value="Edit"/></td>';
+                    // html += '<td><input class="admin-items-edit" type="button" value="Edit"/></td>';
                     html += '<td><input class="admin-items-del" type="button" value="Delete"/></td>';
                     html += '</tr>';
                 }
@@ -424,20 +422,25 @@ function load_items() {
     });
 }
 
-function create_item(name, description, type, score, resource, flag, fixing) {
+function create_item(name, number, price, amount, type, size, description, active) {
+    var formData = new FormData();
+    formData.append("name", name);
+    formData.append("number", number);
+    formData.append("price", price);
+    formData.append("amount", amount);
+    formData.append("type", type);
+    formData.append("size", size);
+    formData.append("description", description);
+    formData.append("active", active);
+    // formData.append('avatar', $('#upavatar')[0].files[0]);
+    console.log(formData);
     $.ajax({
         type: "POST",
-        url: "/admin/items/create",
-        dataType: "json",
-        data: {
-            "name": name,
-            "description": description,
-            "type": type,
-            "score": score,
-            "resource": resource,
-            "flag": flag,
-            "fixing": fixing
-        },
+        url: "/items/set_item",
+        cache: false,
+        processData: false,
+        contentType: false,
+        data: formData,
         beforeSend: function() {
             $('.admin-items-create-modal').removeClass('is-visible');
             NProgress.start();
@@ -446,6 +449,7 @@ function create_item(name, description, type, score, resource, flag, fixing) {
             NProgress.done();
         },
         success: function(msg) {
+            msg = JSON.parse(msg);
             if (msg.status == 1) {
                 show_pnotify("Success!", msg.message, "success");
                 load_items();
@@ -493,13 +497,14 @@ $(document).ready(function() {
         var name = e.target.children[0].children[2].value;
         var description = e.target.children[1].children[1].value;
         var type = e.target.children[2].children[1].children[2].value;
-        var score = e.target.children[3].children[2].value;
-        var resource = e.target.children[4].children[2].value;
-        var flag = e.target.children[5].children[2].value;
-        var fixing = 1;
-        if (e.target.children[6].children[1].checked == true) {
-            fixing = 0;
+        var number = e.target.children[3].children[2].value;
+        var amount = e.target.children[4].children[2].value;
+        var price = e.target.children[5].children[2].value;
+        var size = e.target.children[6].children[2].value;
+        var active = 0;
+        if (e.target.children[7].children[1].checked == true) {
+            active = 1;
         }
-        create_item(name, description, type, score, resource, flag, fixing);
+        create_item(name, number, price, amount, type, size, description, active);
     });
 });
