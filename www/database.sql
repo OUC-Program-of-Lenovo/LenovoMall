@@ -82,7 +82,7 @@ CREATE TABLE `items` (
   `price` float NOT NULL,
   `amount` int(11) NOT NULL,
   `type` varchar(64) NOT NULL,
-  `avatar` varchar(32) NOT NULL,
+  `avatar` varchar(36) NOT NULL,
   `size` varchar(16) NOT NULL,
   `description` text NOT NULL,
   `add_time` varchar(10) NOT NULL,
