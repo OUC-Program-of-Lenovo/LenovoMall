@@ -82,6 +82,14 @@ $route['admin/items/all'] = 'user/get_all_items_info';
 $route['admin/items/create'] = 'user/get_all_items_info';
 $route['admin/items/update/(:num)'] = 'user/get_all_items_info';
 
+/*Items*/
+$route['items'] = 'item/items';
+$route['items/(:num)']='item/finditemById/$1';
+$route['items/deleteItemById/(:num)']='item/deleteItemById/$1';
+$route['items/set_item']='item/set_item';
+$route['items/update_itemNameById/(:num)']='item/update_itemNameById/$1';
+$route['items/surplusDecrease/(:num)']='item/surplusDecrease/$1';
+
 /* Index */
 $route['(:any)'] = 'page/index';
 $route['default_controller'] = 'page/index';
