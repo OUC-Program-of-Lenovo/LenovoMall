@@ -1134,7 +1134,7 @@ class User extends CI_Controller
         }
 
         if ($this->user_model->update_user_avatar(
-            $this->session->user_id, $filename . '.' . $ext
+            $this->session->user_id, $filename.'.'.$ext
         )) {
             echo json_encode(array(
                 'status' => 1,

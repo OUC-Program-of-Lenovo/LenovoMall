@@ -54,7 +54,10 @@ class item extends CI_Controller
     public function items()
     {
         $data['items'] = $this->items_model->get_items();
-        echo json_encode(array('items' => $data['items']));
+        echo json_encode(array(
+            'status' => 1,
+            'items' => $data['items']
+        ));
     }
 
     /**
@@ -65,7 +68,8 @@ class item extends CI_Controller
         $data['item'] = $this->items_model->get_items($item_id);
         if (empty($data['item'])) {
             echo json_encode(array(
-                'status' => -1
+                'status' => 0,
+                'message' => 'Not found!'
             ));
         } else {
                 echo json_encode(array(
@@ -117,13 +121,33 @@ class item extends CI_Controller
             )));
         }
 
+        $filename = md5(md5($this->session->username));
+        $ext = strtolower(pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION));
+        /* Upload config */
+        $config['upload_path'] = '../html/upload/images/picture/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['file_name'] = $filename;
+        $config['file_ext_tolower'] = true;
+        $config['overwrite'] = true;
+        $config['max_width'] = 1024;
+        $config['max_height'] = 768;
+        $config['max_size'] = '102400';
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('avatar')) {
+            die(json_encode(array(
+                'status' => 0,
+                'message' => 'Upload avatar failed! Please check image format, only jpg, png and gif are allowed!'
+            )));
+        }
+
         $item = array(
             'number' => $this->input->post('number'),
             'name' => $this->input->post('name'),
             'price' => $this->input->post('price'),
             'amount' => $this->input->post('amount'),
             'type' => $this->input->post('type'),
-            'avatar' => 'unknown',
+            'avatar' => $filename.'.'.$ext,
             'size' => $this->input->post('size'),
             'description' => $this->input->post('description'),
             'add_time' => time(),
@@ -172,9 +196,15 @@ class item extends CI_Controller
     {
         $data = $this->Items_model->getItemsByUserId($this->session->uer_id);
         if (Empty($data)) {
-            echo json_encode(array('status' => -1));
+            echo json_encode(array(
+                'status' => 0,
+                'message' => 'Item not found!'
+            ));
         } else {
-            echo json_encode(array('status' => 1, 'items' => $data));
+            echo json_encode(array(
+                'status' => 1,
+                'items' => $data
+            ));
         }
     }
 

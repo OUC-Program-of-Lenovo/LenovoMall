@@ -125,6 +125,11 @@
                            placeholder="Price">
                 </p>
                 <p class="fieldset">
+                    <label class="col-lg-2 control-label admin-challenge-label">Avatar</label>
+                    <label class="image-replace admin-challenge-label-score">Avatar</label>
+                    <input id="item-avatar" class="full-width2 has-padding has-border admin-challenge-flag" type="file">
+                </p>
+                <p class="fieldset">
                     <label class="col-lg-2 control-label admin-challenge-label">Size</label>
                     <label class="image-replace admin-challenge-label-flag">Size</label>
                     <input name="size" class="full-width2 has-padding has-border admin-challenge-flag" type="text"

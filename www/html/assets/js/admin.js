@@ -258,7 +258,6 @@ function load_items() {
             };
             var available_keys = Object.keys(available);
             var challenge_info = msg.items;
-            challenge_info[0].add_time = TimeStamp2Date(challenge_info[0].add_time);
             var checkbox = ['active'];
             html += '<div class="table-responsive admin-items"><table class="table table-hover">';
             html += '<thead><tr>';
@@ -270,6 +269,7 @@ function load_items() {
             html += '</span></tr></thead><tbody>';
             if (challenge_info != null) {
                 for (var i = 0; i < challenge_info.length; i++) {
+                    challenge_info[i].add_time = TimeStamp2Date(challenge_info[i].add_time);
                     html += '<tr>';
                     for (var j = 0; j < available_keys.length; j++) {
                         html += '<td>';
@@ -353,39 +353,39 @@ function load_items() {
                     }
                 });
             });
-            $('.admin-items-edit').on('click', function() {
-                var online = $(this).parent().parent().children('td:nth-child(13)').children()[0].checked;
-                if (online == true) {
-                    show_pnotify("Error!", "Please offline this challenge before update it!", "error");
-                } else {
-                    var challenge_id = $(this).parent().parent().children('td:first-child').text();
-                    var name = $(this).parent().parent().children('td:nth-child(2)').text();
-                    var description = $(this).parent().parent().children('td:nth-child(3)').text();
-                    var resource = $(this).parent().parent().children('td:nth-child(4)').text();
-                    var flag = $(this).parent().parent().children('td:nth-child(5)').text();
-                    var score = $(this).parent().parent().children('td:nth-child(6)').text();
-                    var type = $(this).parent().parent().children('td:nth-child(7)').text();
-                    $('#admin-challenge-update-name')[0].value = name;
-                    $('#admin-challenge-update-type-select').value = type;
-                    $('#admin-challenge-update-resource')[0].value = resource;
-                    $('#admin-challenge-update-description')[0].value = description;
-                    $('#admin-challenge-update-score')[0].value = score;
-                    $('#admin-challenge-update-flag')[0].value = flag;
-                    $('.admin-items-update-modal').addClass('is-visible');
-                    $('.admin-update-challenge').submit(function(e) {
-                        e.preventDefault();
-                        if ($('.admin-items-update-modal').hasClass('is-visible') == false) return;
-                        var id = challenge_id;
-                        var name_new = e.target.children[0].children[2].value;
-                        var description_new = e.target.children[1].children[1].value;
-                        var type_new = e.target.children[2].children[1].children[2].value;
-                        var score_new = e.target.children[3].children[2].value;
-                        var resource_new = e.target.children[4].children[2].value;
-                        var flag_new = e.target.children[5].children[2].value;
-                        update_item(id, name_new, description_new, type_new, score_new, resource_new, flag_new);
-                    });
-                }
-            });
+            // $('.admin-items-edit').on('click', function() {
+            //     var online = $(this).parent().parent().children('td:nth-child(13)').children()[0].checked;
+            //     if (online == true) {
+            //         show_pnotify("Error!", "Please offline this challenge before update it!", "error");
+            //     } else {
+            //         var challenge_id = $(this).parent().parent().children('td:first-child').text();
+            //         var name = $(this).parent().parent().children('td:nth-child(2)').text();
+            //         var description = $(this).parent().parent().children('td:nth-child(3)').text();
+            //         var resource = $(this).parent().parent().children('td:nth-child(4)').text();
+            //         var flag = $(this).parent().parent().children('td:nth-child(5)').text();
+            //         var score = $(this).parent().parent().children('td:nth-child(6)').text();
+            //         var type = $(this).parent().parent().children('td:nth-child(7)').text();
+            //         $('#admin-challenge-update-name')[0].value = name;
+            //         $('#admin-challenge-update-type-select').value = type;
+            //         $('#admin-challenge-update-resource')[0].value = resource;
+            //         $('#admin-challenge-update-description')[0].value = description;
+            //         $('#admin-challenge-update-score')[0].value = score;
+            //         $('#admin-challenge-update-flag')[0].value = flag;
+            //         $('.admin-items-update-modal').addClass('is-visible');
+            //         $('.admin-update-challenge').submit(function(e) {
+            //             e.preventDefault();
+            //             if ($('.admin-items-update-modal').hasClass('is-visible') == false) return;
+            //             var id = challenge_id;
+            //             var name_new = e.target.children[0].children[2].value;
+            //             var description_new = e.target.children[1].children[1].value;
+            //             var type_new = e.target.children[2].children[1].children[2].value;
+            //             var score_new = e.target.children[3].children[2].value;
+            //             var resource_new = e.target.children[4].children[2].value;
+            //             var flag_new = e.target.children[5].children[2].value;
+            //             update_item(id, name_new, description_new, type_new, score_new, resource_new, flag_new);
+            //         });
+            //     }
+            // });
             $('.admin-items-del ').on('click', function() {
                 var challenge_id = $(this).parent().parent().children('td:first-child').text();
                 win.confirm(
@@ -432,7 +432,7 @@ function create_item(name, number, price, amount, type, size, description, activ
     formData.append("size", size);
     formData.append("description", description);
     formData.append("active", active);
-    // formData.append('avatar', $('#upavatar')[0].files[0]);
+    formData.append('avatar', $('#item-avatar')[0].files[0]);
     console.log(formData);
     $.ajax({
         type: "POST",
@@ -500,9 +500,9 @@ $(document).ready(function() {
         var number = e.target.children[3].children[2].value;
         var amount = e.target.children[4].children[2].value;
         var price = e.target.children[5].children[2].value;
-        var size = e.target.children[6].children[2].value;
+        var size = e.target.children[7].children[2].value;
         var active = 0;
-        if (e.target.children[7].children[1].checked == true) {
+        if (e.target.children[8].children[1].checked == true) {
             active = 1;
         }
         create_item(name, number, price, amount, type, size, description, active);
