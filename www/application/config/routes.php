@@ -56,8 +56,8 @@ $route['user'] = 'page/index';
 $route['user/login'] = 'user/login';
 $route['user/register'] = 'user/register';
 $route['user/logout'] = 'user/logout';
-
-$route['user/update'] = 'user/update_user_info';
+$route['user/update/info'] = 'user/update_user_info';
+$route['user/update/avatar'] = 'user/update_user_avatar';
 $route['user/info'] = 'user/get_personal_information';
 
 $route['user/check/username'] = 'user/check_username_existed';
