@@ -26,6 +26,44 @@ class order extends CI_Controller {
 ///session是这么用mie？///
 /////////////////////////
 
+    /**
+     * Check admin
+     * @return bool
+     */
+    public function is_admin()
+    {
+        return ($this->session->user_type === '1');
+    }
+
+	/**
+     * Check overdue
+     * @param $alive_time : int
+     * @return bool
+     */
+    public function is_overdue($alive_time)
+    {
+        return (time() > $alive_time);
+    }
+
+    /**
+     * Check login
+     * @return bool
+     */
+    public function is_logined()
+    {
+        if ($this->session->user_id === NULL) {
+            return false;
+        } else {
+            $session_alive_time = $this->session->session_alive_time;
+            if ($this->is_overdue($session_alive_time)) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+
 //1.生成订单
     public function create_order($item_id){
         $data=array(
@@ -33,12 +71,12 @@ class order extends CI_Controller {
             'user_id'=>$this->session->user_id,
             'item_id'=>$item_id,
             'amount'=>1,
-            'rcv_address'=>$this->input->post('rcv_address'),
-            'rcv_phone'= $this->user_model->get_rcv_address_by_user_id($user_id),
-            'rcv_name'= $this->input->post('rcv_name'),
+            'rcv_address'=>$this->input->post('rcv_address')，
+            'rcv_phone'=>$this->user_model->get_rcv_address_by_user_id($user_id)，
+            'rcv_name'=>$this->input->post('rcv_name'),
 //            'postscript'=>"无备注",
-            'status'= 0,
-            'time'= time(),
+            'status'=>0,
+            'time'=>time(),
         );
 
         return $this->order_model->insert_order($data);
@@ -261,6 +299,17 @@ class order extends CI_Controller {
         
     }  
     
+//16.通过order_id删除订单
+    public function delete($order_id){
+    	if ($this->is_logined() === false || $this->is_admin() === false) {
+            die(json_encode(array(
+                'status' => 0,
+                'message' => 'You don\'t have permission to access this!'
+            )));
+        }
 
+        $this->order_model->delete_order_by_order_id($order_id);
+
+    }
 
 ?>
