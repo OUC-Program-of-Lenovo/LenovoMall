@@ -105,6 +105,7 @@ function load_users() {
                     'user_type': 'Admin',
                     'ban': 'Ban',
                 };
+                console.log(msg.value);
                 var available_keys = Object.keys(available);
                 var user_info = msg.value;
                 var checkbox = ['actived', 'user_type', 'ban'];
@@ -264,20 +265,11 @@ function load_items() {
                 html += '<th><span class="admin-items-key">' + available[available_keys[i]] + '</th>';
             }
             // html += '<th><span class="admin-items-key">' + 'Edit' + '</th>';
-            html += '<th><span class="admin-items-key">' + 'Delete' + '</th>';
+            html += '<th><span class="admin-items-key">' + 'Del' + '</th>';
             html += '</span></tr></thead><tbody>';
             if (challenge_info != null) {
                 for (var i = 0; i < challenge_info.length; i++) {
                     challenge_info[i].add_time = TimeStamp2Date(challenge_info[i].add_time);
-                    if (challenge_info[i].type == 'a') {
-                        challenge_info[i].type = '游戏本'
-                    } else if(challenge_info[i].type == 'b') {
-                        challenge_info[i].type = '商务本'
-                    } else if(challenge_info[i].type == 'c') {
-                        challenge_info[i].type = '二合一本'
-                    } else {
-                        challenge_info[i].type = '轻薄本'
-                    }
                     html += '<tr>';
                     for (var j = 0; j < available_keys.length; j++) {
                         html += '<td>';
@@ -338,9 +330,9 @@ function load_items() {
                 var url = '';
                 var challenge_id = $(this).parent().parent().children('td:first-child').text();
                 if (this.checked == true) {
-                    url = '/admin/items/online/';
+                    url = '/admin/challenge/online/';
                 } else {
-                    url = '/admin/items/offline/';
+                    url = '/admin/challenge/offline/';
                 }
                 $.ajax({
                     type: 'GET',
@@ -441,6 +433,7 @@ function create_item(name, number, price, amount, type, size, description, activ
     formData.append("description", description);
     formData.append("active", active);
     formData.append('avatar', $('#item-avatar')[0].files[0]);
+    console.log(formData);
     $.ajax({
         type: "POST",
         url: "/items/set_item",

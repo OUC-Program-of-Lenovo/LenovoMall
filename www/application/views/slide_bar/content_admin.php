@@ -21,7 +21,10 @@
                 <a href="javascript:load_items();">Goods</a>
             </li>
             <li>
-                <a href="javascript:load_orders();">Orders</a>
+                <a href="javascript:;">Logs</a>
+            </li>
+            <li>
+                <a href="javascript:;">News</a>
             </li>
         </ul>
     </li>
@@ -33,7 +36,7 @@
             <span class="the-btn fa fa-plus"></span>
         </div>
         <ul>
-            <li>
+            <li class="goods-all">
                 <a href="javascript:;">All</a>
             </li>
         </ul>
@@ -42,7 +45,7 @@
     <li class="cd-write-up">
         <div>
             <span class="menu-icons  fa fa-bookmark"></span>
-            <a href="#">Orders</a>
+            <a href="#">Side Bar 1</a>
             <span class="the-btn fa fa-plus"></span>
         </div>
         <ul>

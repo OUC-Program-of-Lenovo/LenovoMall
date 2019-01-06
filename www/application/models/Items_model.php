@@ -53,16 +53,33 @@ class items_model extends CI_Model
 
 
     /************************************************购物车中商品的操作*****************************************************************/
+
     //购物车中查询,通过用户ID获得物品数组
     public function getItemsByUserId($user_id)
     {
         $queryUser = $this->db->get_where('users', array('user_id' => $user_id));
-        $queryIds = $queryUser['shopping_cart'];
+        $result=$queryUser->row_array();
+        $queryIds = $result['shopping_cart'];
         $queryIdsFinal = explode('|', $queryIds);
-        for ($i = 0; $i < count($queryIdsFinal); $i++) {
-            $query[$i] = $this->db->get_where('items', array('item_id' => intval($queryIdsFinal[$i])));
+        $value = array();
+        for ($i = 1; $i < count($queryIdsFinal) - 1; $i++) {
+                if (array_key_exists($queryIdsFinal[$i], $value) === true) {
+                    $value[$queryIdsFinal[$i]]++;
+                } else {
+                    $value[$queryIdsFinal[$i]] = 1;
+                }
+
+            }
+        $query = array();
+        for ($i = 1; $i < count($queryIdsFinal)-1; $i++) {
+            if (array_key_exists($queryIdsFinal[$i], $query) === false) {
+                $query[intval($queryIdsFinal[$i])] = $this->db->get_where(
+                    'items', array('item_id' => intval($queryIdsFinal[$i]))
+                )->row_array();
+                $query[intval($queryIdsFinal[$i])]['num'] = $value[intval($queryIdsFinal[$i])];
+            }
         }
-        return $query->result_array();
+        return $query;
     }
 
     //将商品加入购物车
@@ -95,20 +112,7 @@ class items_model extends CI_Model
 
     }
 
-    /**
-     * Get item number by item id
-     * @param $item_id: int
-     * @return string
-     */
-    public function get_username_by_user_id($item_id)
-    {
-        $query = $this->db
-            ->select('number')
-            ->where('item_id', $item_id)
-            ->get('items');
-        $result = $query->row_array()['number'];
-        return $result;
-    }
+
 }
 
 

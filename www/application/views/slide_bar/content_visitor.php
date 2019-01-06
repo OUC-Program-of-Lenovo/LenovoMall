@@ -6,8 +6,20 @@
             <span class="the-btn fa fa-plus"></span>
         </div>
         <ul>
-            <li>
+            <li class="goods-all">
                 <a href="#">All</a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="cd-tutorials">
+        <div>
+            <span class="menu-icons  fa fa-book"></span>
+            <a href="#">Sidebar item 2</a><span class="the-btn fa fa-plus"></span>
+        </div>
+        <ul>
+            <li>
+                <a href="#">Coming soon</a>
             </li>
         </ul>
     </li>

@@ -83,9 +83,9 @@ $route['admin/items/all'] = 'user/get_all_items_info';
 $route['admin/items/update/(:num)'] = 'user/get_all_items_info';
 $route['admin/items/online/(:num)'] = 'item/online';
 $route['admin/items/offline/(:num)'] = 'item/get_all_items_info';
-$route['admin/order/confirm/(:num)'] = 'order/order_confirm';
-$route['admin/order/delete/(:num)'] = 'order/delete';
-$route['admin/order/all'] = 'order/order_all';
+$route['admin/order/confirm/(:num)'] = '';
+$route['admin/order/delete/(:num)'] = '';
+$route['admin/order/all'] = '';
 
 
 /*Items*/

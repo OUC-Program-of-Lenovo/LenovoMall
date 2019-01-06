@@ -75,7 +75,9 @@
 		</ul>
 	</div>
 
-	<div class="dialog">
+	
+</div>
+<div class="dialog">
 		<div class="dialog_content">
 			<button id="dialog_close">×</button>
 			<img src="/assets/img/goods01.jpg">
@@ -88,6 +90,4 @@
 			<p class="description">拯救者 Y7000 15.6英寸游戏笔记本 黑色拯救者 Y7000 15.6英寸游戏笔记本 黑色拯救者 Y7000 15.6英寸游戏笔记本 黑色拯救者 Y7000 15.6英寸游戏笔记本 黑色拯救者 Y7000 15.6英寸游戏笔记本 黑色拯救者 Y7000 15.6英寸游戏笔记本 黑色</p>
 		</div>
 	</div>
-</div>
-
 <script type="text/javascript" src="/assets/js/content.js"></script>
