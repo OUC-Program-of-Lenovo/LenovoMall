@@ -262,3 +262,7 @@ span.the-btn {
 #toggle ul li a {
      margin-left: 0;   
 }
+
+.cover-heading {
+  margin-top: -50px!important;
+}
