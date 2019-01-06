@@ -68,6 +68,10 @@ $route['user/get_captcha'] = 'user/get_captcha';
 
 $route['user/active/(:any)'] = 'user/active';
 
+$route['user/cart/add/(:num)'] = 'user/add_cart';
+$route['user/cart/delete/(:num)'] = 'user/delete_cart';
+$route['user/cart'] = 'user/get_cart';
+
 //$route['user/(:any)'] = 'page/index';
 
 /* Admin */
@@ -76,12 +80,13 @@ $route['admin/user/update/(:num)'] = 'user/update_status';
 $route['admin/user/delete/(:num)'] = 'user/delete_user';
 $route['admin/user/get_name/(:num)'] = 'user/get_username_by_user_id';
 $route['admin/items/all'] = 'user/get_all_items_info';
-$route['admin/items/create'] = 'user/get_all_items_info';
 $route['admin/items/update/(:num)'] = 'user/get_all_items_info';
 $route['admin/items/online/(:num)'] = 'item/online';
 $route['admin/items/offline/(:num)'] = 'item/get_all_items_info';
 $route['admin/order/confirm/(:num)'] = '';
 $route['admin/order/delete/(:num)'] = '';
+$route['admin/order/all'] = '';
+
 
 /*Items*/
 $route['items'] = 'item/items';

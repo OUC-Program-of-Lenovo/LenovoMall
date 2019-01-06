@@ -43,12 +43,12 @@
     <li class="cd-write-up">
         <div>
             <span class="menu-icons  fa fa-bookmark"></span>
-            <a href="#">Side Bar 1</a>
+            <a href="#">Orders</a>
             <span class="the-btn fa fa-plus"></span>
         </div>
         <ul>
             <li>
-                <a href="#">None</a>
+                <a href="#">All</a>
             </li>
         </ul>
     </li>

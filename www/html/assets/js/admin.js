@@ -105,7 +105,6 @@ function load_users() {
                     'user_type': 'Admin',
                     'ban': 'Ban',
                 };
-                console.log(msg.value);
                 var available_keys = Object.keys(available);
                 var user_info = msg.value;
                 var checkbox = ['actived', 'user_type', 'ban'];
@@ -442,7 +441,6 @@ function create_item(name, number, price, amount, type, size, description, activ
     formData.append("description", description);
     formData.append("active", active);
     formData.append('avatar', $('#item-avatar')[0].files[0]);
-    console.log(formData);
     $.ajax({
         type: "POST",
         url: "/items/set_item",
@@ -568,7 +566,7 @@ function load_orders(){
     html = '<div class="admin-challenge"><nav class="navbar navbar-default" role="navigation"><div class="container-fluid">';
     html += '<div class="navbar-header"><a class="navbar-brand" href="#">Goods</a></div>';
     html += '<div><button type="button" class="admin-challenge-create btn btn-default navbar-btn">Create</button></div></div></nav></div>';
-    var url = '';
+    var url = '/admin/order/all';
     $.ajax({
         type: "GET",
         url: url,
