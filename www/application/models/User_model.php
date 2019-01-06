@@ -137,10 +137,14 @@ class User_model extends CI_Model
      * @param $user_id: int
      * @param $phone: string
      */
-    public function update_user_info($user_id, $phone)
+    public function update_user_info($user_id, $phone, $receiver, $address)
     {
         $this->db
-            ->set(array('phone' => $phone))
+            ->set(array(
+                'phone' => $phone,
+                'rcv_name' => $receiver,
+                'rcv_address' => $address
+            ))
             ->where('user_id', $user_id)
             ->update('users');
     }
@@ -223,7 +227,7 @@ class User_model extends CI_Model
         $this->db
             ->select(
                 'username, password, email,
-                 phone, avatar'
+                 phone, avatar, rcv_name, rcv_address'
             );
         $query = $this->db->get_where('users', array('user_id' => $user_id));
         return $query->row_array();

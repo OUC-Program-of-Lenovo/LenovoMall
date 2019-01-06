@@ -13,8 +13,10 @@ $(document).ready(function() {
             var password = e.target.children[1].children[1].value;
             var email = e.target.children[2].children[1].value;
             var phone = e.target.children[3].children[1].value;;
+            var receiver = e.target.children[4].children[1].value;
+            var address = e.target.children[5].children[1].value;
             var captcha = e.target.children[4].children[1].value;
-            register(username, password, email, phone,captcha);
+            register(username, password, email, phone, receiver, address, captcha);
         } /*else if (startswith(type, "forget")) {
             var email = e.target.children[0].children[1].value;
             var captcha = e.target.children[1].children[1].value;
@@ -65,7 +67,7 @@ function login(username, password, captcha) {
     });
 }
 
-function register(username, password, email, phone, captcha) {
+function register(username, password, email, phone, receiver, address, captcha) {
     $.ajax({
         type: "POST",
         url: "/user/register",
@@ -75,6 +77,8 @@ function register(username, password, email, phone, captcha) {
             "password": password,
             "email": email,
             "phone": phone,
+            "receiver": receiver,
+            "address": address,
             "captcha": captcha,
         },
         beforeSend: function() {

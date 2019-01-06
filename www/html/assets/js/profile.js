@@ -21,10 +21,12 @@ function get_personal_information() {
                 var available = {
                     "email": "email",
                     "phone": "phone",
+                    "rcv_name": "receiver",
+                    "rcv_address": "address"
                 };
                 var available_keys = Object.keys(available);
                 var disable = ['email'];
-                var able = ['phone'];
+                var able = ['phone', 'receiver', 'address'];
                 html += '<div class="profile"><div class="profile-head">';
                 html += '<h2 class="profile-head-username">' + user_info.username + '</h2>';
                 html += '</div><form enctype="multipart/form-data" class="profile-update" action="/user/update" method="POST"><div class="profile-body">';
@@ -34,7 +36,6 @@ function get_personal_information() {
                         html += '<tr><td><span class="profile-body-key">';
                         html += available[keys[i]];
                         html += '</span></td><td><input class="profile-body-value ';
-
                         if (disable.indexOf(keys[i]) != -1) {
                             html += 'profile-disable" readonly ';
                         } else if (able.indexOf(keys[i] != -1)) {
@@ -89,7 +90,9 @@ function get_personal_information() {
                 $('.profile-update').submit(function(e) {
                     e.preventDefault();
                     var phone = e.target.children[0].children[0].children[0].children[1].children[1].children[0].value;
-                    update_user_info(phone);
+                    var receiver = e.target.children[0].children[0].children[0].children[2].children[1].children[0].value;
+                    var address = e.target.children[0].children[0].children[0].children[3].children[1].children[0].value;
+                    update_user_info(phone, receiver, address);
                 });
             } else {
                 show_pnotify("Failed!", msg.message, "error");
@@ -126,13 +129,15 @@ function update_user_avatar() {
     })
 }
 
-function update_user_info(phone) {
+function update_user_info(phone, receiver, address) {
     $.ajax({
         type: "POST",
         url: "/user/update/info",
         dataType: "json",
         data: {
-            "phone": phone
+            "phone": phone,
+            "receiver": receiver,
+            "address": address
         },
         beforeSend: function() {
             NProgress.start();

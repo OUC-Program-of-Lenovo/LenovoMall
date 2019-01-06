@@ -105,7 +105,6 @@ function load_users() {
                     'user_type': 'Admin',
                     'ban': 'Ban',
                 };
-                console.log(msg.value);
                 var available_keys = Object.keys(available);
                 var user_info = msg.value;
                 var checkbox = ['actived', 'user_type', 'ban'];

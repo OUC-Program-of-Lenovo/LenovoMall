@@ -92,6 +92,14 @@
                     <label class="image-replace form-phone-label">Phone</label>
                     <input name="phone" class="full-width2 has-padding has-border" id="register-phone" type="tel" placeholder="Phone">
                 </p>
+                <p class="fieldset">
+                    <label class="image-replace form-real_name-label">Receiver</label>
+                    <input name="receiver" class="full-width2 has-padding has-border" id="register-real_name" type="text" placeholder="Receiver">
+                </p>
+                <p class="fieldset">
+                    <label class="image-replace form-wechat-label">Address</label>
+                    <input name="address" class="full-width2 has-padding has-border" id="register-wechat" type="text" placeholder="Address">
+                </p>
                 <p class="fieldset form-captcha">
                     <label class="image-replace form-captcha-label">Captcha</label>
                     <input name="captcha" class="full-width2 has-padding has-border" id="register-captcha" type="text" placeholder="Captcha">

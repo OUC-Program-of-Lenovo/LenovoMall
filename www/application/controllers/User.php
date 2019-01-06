@@ -824,6 +824,8 @@ class User extends CI_Controller
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
         $this->form_validation->set_rules('email', 'Email', 'trim|required');
         $this->form_validation->set_rules('phone', 'Phone', 'trim|required');
+        $this->form_validation->set_rules('receiver', 'Receiver', 'trim|required');
+        $this->form_validation->set_rules('address', 'Address', 'trim|required');
         $this->form_validation->set_rules('captcha', 'Captcha', 'trim|required');
 
         if ($this->form_validation->run() === FALSE) {
@@ -839,7 +841,9 @@ class User extends CI_Controller
             'username' => $this->input->post('username'),
             'password' => $this->input->post('password'),
             'email' => $this->input->post('email'),
-            'phone' => $this->input->post('phone')
+            'phone' => $this->input->post('phone'),
+            'receiver' => $this->input->post('receiver'),
+            'address' => $this->input->post('address')
         );
 
         /* Form validation */
@@ -1172,6 +1176,8 @@ class User extends CI_Controller
         $this->load->library('form_validation');
 
         $this->form_validation->set_rules('phone', 'Phone', 'trim|required');
+        $this->form_validation->set_rules('receiver', 'Receiver', 'trim|required');
+        $this->form_validation->set_rules('address', 'Address', 'trim|required');
         if ($this->form_validation->run() === FALSE) {
             die(json_encode(array(
                 'status' => 0,
@@ -1181,6 +1187,8 @@ class User extends CI_Controller
 
         /* Post data */
         $phone = $this->input->post('phone');
+        $receiver = $this->input->post('receiver');
+        $address = $this->input->post('address');
 
         /* Form validation */
         if ($this->check_phone_length($phone) === false) {
@@ -1195,7 +1203,7 @@ class User extends CI_Controller
             )));
         }
 
-        $this->user_model->update_user_info($this->session->user_id, $phone);
+        $this->user_model->update_user_info($this->session->user_id, $phone, $receiver, $address);
         echo json_encode(array(
             'status' => 1,
             'message' => 'Update success!',

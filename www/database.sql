@@ -161,6 +161,7 @@ CREATE TABLE `users` (
   `shopping_cart` varchar(40) DEFAULT '|',
   `collection` varchar(100) DEFAULT NULL,
   `rcv_address` varchar(100) DEFAULT NULL,
+  `rcv_name` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -171,8 +172,8 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (2,'admin','d8425175c5a840941b945f41da53c58b','RBQSoEeryNGWMijC','17866621111','0.jpg','admin@example.com','1546086135','192.168.44.1',0,1,1,'','1546093335',NULL,'1546139346','192.168.44.1','|',NULL,NULL);
-INSERT INTO `users` VALUES (3,'test','af31d39f9ffa9b2d84f5ac118ff92d3e','LMTtgz4bSDOyaIj8','17866621112','0.jpg','test@example.com','1546086198','192.168.44.1',0,1,0,'','1546093335',NULL,'1546139346','192.168.44.1','|',NULL,NULL);
+INSERT INTO `users` VALUES (2,'admin','d8425175c5a840941b945f41da53c58b','RBQSoEeryNGWMijC','17866621111','0.jpg','admin@example.com','1546086135','192.168.44.1',0,1,1,'','1546093335',NULL,'1546139346','192.168.44.1','|',NULL,'中国海洋大学','管理员');
+INSERT INTO `users` VALUES (3,'test','af31d39f9ffa9b2d84f5ac118ff92d3e','LMTtgz4bSDOyaIj8','17866621112','0.jpg','test@example.com','1546086198','192.168.44.1',0,1,0,'','1546093335',NULL,'1546139346','192.168.44.1','|',NULL,'NewYork','Mike');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
