@@ -133,7 +133,7 @@ $(document).ready(function(){
     url:"/items/get_itemsInCart",
     dataType:"json",
     success:function(msg){//msg
-        console.log('mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm');
+        console.log('msg:'+msg);
         //if(msg.status==1)//{
        // var cartInfo=json.parse(msg.value);
        $(".cart-tbody").html('');
@@ -160,8 +160,9 @@ $(document).ready(function(){
 })//.ajax
 }
 
- GetGoods();
+
 //购物车更新(用户登录后，自动显示其购物车中的信息)
+GetGoods();
 $(document).ready(function()
 {
  GetGoods();
@@ -172,52 +173,58 @@ $(document).ready(function()
 //添加到购物车(动态修改版)
 $(document).ready(function(){
 
-  $("#add_cart").click(function(){
+  	$("#add_cart").click(function(){
 
-    var current_id = $(".dialog").attr("title");//试图添加进购物车的pc的信息
-    var current_num = parseInt($("#num").val());
-      console.log("current_num:"+ current_num);
+    	var current_id = $(".dialog").attr("title");//试图添加进购物车的pc的信息
+    	var current_num = parseInt($("#num").val());
+      	console.log("current_num:"+ current_num);
    		console.log("current_id:"+ current_id);
-    getCartGoods(current_num);
-    function getCartGoods(current_num){//向后台购物车请求数据.
-    	for(var j=0;j<current_num;j++){
+    	getCartGoods(current_num);
+    	function getCartGoods(current_num){//向后台购物车请求数据.
+    		for(var j=0;j<current_num;j++){
     			$.ajax({
-    type:"POST",
-    url:"/user/cart/add/"+ current_id,
-    // data:{"current_id":"current_num"},
-    dataType:"json",
-    success:function(CartGoods)
-    {
-       // var cartInfo=json.parse(msg);
-       console.log("cart:"+CartGoods);
-       var cart = CartGoods.value;
-       console.log(cart);
-       var cart_key = Object.keys(cart);
-       console.log(cart_key);
-       GetGoods();
-       //  $(".cart-tbody").html('');
-       // for(i=0;i<CartGoods.length;i++)
-       // {
-       //      var name=CartGoods[i].Name;
-       //      var price=CartGoods[i].Price;
-       //      var num=CartGoods[i].Num;
-       //      console.log("From cart-add func:"+CartGoods[i].Name);
-       //      var table=$(".cart-tbody");
-       //      var table_data=$("<tr>").appendTo(table);
-       //      var table_name=$("<td>").text(name).appendTo(table_data);
-       //      var table_price=$("<td>").text(price).appendTo(table_data);
-       //      var table_num=$("<td>").text(num).appendTo(table_data);
-       // }
-   }
-})//.ajax
-    	}
-    
-}//function GetCartGoodsIdNum()
-$(".dialog").css({"display":"none"});
-})
+    				type:"POST",
+    				url:"/user/cart/add/"+ current_id,
+    				// data:{"current_id":"current_num"},
+    				dataType:"json",
+    				success:function(CartGoods){
+       					// var cartInfo=json.parse(msg);
+       					console.log("cart:"+CartGoods);
+       					GetGoods();
+				        //  $(".cart-tbody").html('');
+				        // for(i=0;i<CartGoods.length;i++)
+				        // {
+				        //      var name=CartGoods[i].Name;
+				        //      var price=CartGoods[i].Price;
+				        //      var num=CartGoods[i].Num;
+				        //      console.log("From cart-add func:"+CartGoods[i].Name);
+				        //      var table=$(".cart-tbody");
+				        //      var table_data=$("<tr>").appendTo(table);
+				        //      var table_name=$("<td>").text(name).appendTo(table_data);
+				        //      var table_price=$("<td>").text(price).appendTo(table_data);
+				        //      var table_num=$("<td>").text(num).appendTo(table_data);
+				        // }
+    				}
+  				})//.ajax
+    		}
+    	}//function GetCartGoodsIdNum()
+		$(".dialog").css({"display":"none"});
+	})
 })
 
-
+//提交购物车
+$(document).ready(function(){
+	$("#cart_submit").click(function(){
+		$.ajax({
+			type:"POST",
+    		url:"/user/order/submit",
+    		data:"Goods from cart to order!",
+    		success:function(){
+    			console.log("order get.");
+    		}
+		})
+	})
+})
 
 
 //列表交互
