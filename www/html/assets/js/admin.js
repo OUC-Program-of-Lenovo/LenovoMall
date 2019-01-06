@@ -589,8 +589,8 @@ function load_orders(){
                         html += '</span>';
                         html += '</td>';
                     }
-                    html += '<td><input class="admin-orders-cfm" type="button" value="Confirm"/></td>';
-                    html += '<td><input class="admin-orders-del" type="button" value="Delete"/></td>';
+                    html += '<td><input class="admin-orders-cfm admin-items-edit" type="button" value="Confirm"/></td>';
+                    html += '<td><input class="admin-orders-del admin-items-del" type="button" value="Delete"/></td>';
                     html += '</tr>';
                 }
             }

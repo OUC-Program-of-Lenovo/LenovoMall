@@ -199,7 +199,7 @@ class User extends CI_Controller
         $user_info['salt'] = $this->get_salt();
         $user_info['password'] = $this->get_encrypted_password($user_info['password'], $user_info['salt']);
 
-        $user_info['avatar'] = '/upload/images/avatar/0.jpg';
+        $user_info['avatar'] = '0.jpg';
 
         $user_info['regist_time'] = $time;
         $user_info['regist_ip'] = $this->input->ip_address();
@@ -842,8 +842,8 @@ class User extends CI_Controller
             'password' => $this->input->post('password'),
             'email' => $this->input->post('email'),
             'phone' => $this->input->post('phone'),
-            'receiver' => $this->input->post('receiver'),
-            'address' => $this->input->post('address')
+            'rcv_name' => $this->input->post('receiver'),
+            'rcv_address' => $this->input->post('address')
         );
 
         /* Form validation */
@@ -1442,7 +1442,7 @@ class User extends CI_Controller
         $this->load->library('form_validation');
 
         $user_id = intval($this->uri->segment(4));
-        if ($this->user_model->id_user_id_existed($user_id) === false) {
+        if ($this->user_model->is_user_id_existed($user_id) === false) {
             die(json_encode(array(
                 'status' => 0,
                 'message' => 'User ID doesn\'t exists!'

@@ -12,18 +12,6 @@
         </ul>
     </li>
 
-    <li class="cd-tutorials">
-        <div>
-            <span class="menu-icons  fa fa-book"></span>
-            <a href="#">Sidebar item 2</a><span class="the-btn fa fa-plus"></span>
-        </div>
-        <ul>
-            <li>
-                <a href="#">Coming soon</a>
-            </li>
-        </ul>
-    </li>
-
     <li class="cd-login">
         <div>
             <span class="menu-icons  glyphicon glyphicon-log-in"></span>

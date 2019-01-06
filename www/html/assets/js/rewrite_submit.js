@@ -15,7 +15,7 @@ $(document).ready(function() {
             var phone = e.target.children[3].children[1].value;;
             var receiver = e.target.children[4].children[1].value;
             var address = e.target.children[5].children[1].value;
-            var captcha = e.target.children[4].children[1].value;
+            var captcha = e.target.children[6].children[1].value;
             register(username, password, email, phone, receiver, address, captcha);
         } /*else if (startswith(type, "forget")) {
             var email = e.target.children[0].children[1].value;
