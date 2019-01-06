@@ -95,7 +95,20 @@ class items_model extends CI_Model
 
     }
 
-
+    /**
+     * Get item number by item id
+     * @param $item_id: int
+     * @return string
+     */
+    public function get_username_by_user_id($item_id)
+    {
+        $query = $this->db
+            ->select('number')
+            ->where('item_id', $item_id)
+            ->get('items');
+        $result = $query->row_array()['number'];
+        return $result;
+    }
 }
 
 

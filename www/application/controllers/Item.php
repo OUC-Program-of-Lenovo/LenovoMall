@@ -223,6 +223,42 @@ class item extends CI_Controller
     {
         return $this->Items_model->putItemIntoCart($this->session->uer_id, $item_id);
     }
+
+
+    /**
+     * [API] Get item number by item id
+     * Permission:
+     *      Administrator
+     * Method:
+     *      Get
+     * Param:
+     *      segment 4
+     * Return(Json):
+     *      status: 1 or 0
+     *      value/message
+     */
+    public function get_item_number_by_item_id()
+    {
+        if ($this->is_logined() === false || $this->is_admin() === false) {
+            die(json_encode(array(
+                'status' => 0,
+                'message' => 'You don\'t have permission to access this!'
+            )));
+        }
+        $item_id = $this->uri->segment(4);
+        $number = $this->item_model->get_item_number_by_item_id($item_id);
+        if($number === NULL)
+        {
+            die(json_encode(array(
+                'status' => 0,
+                'message' => 'Item id does not exists!'
+            )));
+        }
+        echo json_encode(array(
+            'status' => 1,
+            'value' => $number
+        ));
+    }
 }
 
 ?>

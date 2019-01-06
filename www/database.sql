@@ -115,9 +115,6 @@ CREATE TABLE `orders` (
   `rcv_address` varchar(64) NOT NULL,
   `rcv_name` varchar(16) NOT NULL,
   `rcv_phone` varchar(11) NOT NULL,
-  `snd_address` varchar(64) NOT NULL,
-  `snd_name` varchar(16) NOT NULL,
-  `snd_phone` varchar(11) NOT NULL,
   `status` int(11) NOT NULL DEFAULT '0',
   `time` varchar(11) NOT NULL,
   PRIMARY KEY (`order_id`)

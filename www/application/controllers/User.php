@@ -1149,6 +1149,41 @@ class User extends CI_Controller
     }
 
     /**
+     * [API] Get username by user id
+     * Permission:
+     *      Administrator
+     * Method:
+     *      Get
+     * Param:
+     *      segment 4
+     * Return(Json):
+     *      status: 1 or 0
+     *      value/message
+     */
+    public function get_username_by_user_id()
+    {
+        if ($this->is_logined() === false || $this->is_admin() === false) {
+            die(json_encode(array(
+                'status' => 0,
+                'message' => 'You don\'t have permission to access this!'
+            )));
+        }
+        $user_id = $this->uri->segment(4);
+        $username = $this->user_model->get_username_by_user_id($user_id);
+        if($username === NULL)
+        {
+            die(json_encode(array(
+                'status' => 0,
+                'message' => 'User id does not exists!'
+            )));
+        }
+        echo json_encode(array(
+            'status' => 1,
+            'value' => $username
+        ));
+    }
+
+    /**
      * [API] Update user information
      * Permission:
      *      users which has login

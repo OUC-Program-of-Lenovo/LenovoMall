@@ -265,7 +265,7 @@ function load_items() {
                 html += '<th><span class="admin-items-key">' + available[available_keys[i]] + '</th>';
             }
             // html += '<th><span class="admin-items-key">' + 'Edit' + '</th>';
-            html += '<th><span class="admin-items-key">' + 'Del' + '</th>';
+            html += '<th><span class="admin-items-key">' + 'Delete' + '</th>';
             html += '</span></tr></thead><tbody>';
             if (challenge_info != null) {
                 for (var i = 0; i < challenge_info.length; i++) {
@@ -517,3 +517,176 @@ $(document).ready(function() {
         create_item(name, number, price, amount, type, size, description, active);
     });
 });
+
+function get_username_by_user_id(user_id) {
+    var url = '/admin/user/get_name/' + user_id;
+    var username = '';
+    $.ajax({
+        type: "GET",
+        url: url,
+        dataType: "json",
+        beforeSend: function() {
+            NProgress.start();
+        },
+        complete: function() {
+            NProgress.done();
+        },
+        success: function(msg) {
+            if(msg.status == 1) {
+                username = msg.value;
+            }
+        }
+    });
+    return username;
+}
+
+function get_item_number_by_item_id(item_id) {
+    var url = '/admin/item/get_number/' + item_id;
+    var number = '';
+    $.ajax({
+        type: "GET",
+        url: url,
+        dataType: "json",
+        beforeSend: function() {
+            NProgress.start();
+        },
+        complete: function() {
+            NProgress.done();
+        },
+        success: function(msg) {
+            if(msg.status == 1) {
+                number = msg.value;
+            }
+        }
+    });
+    return number;
+}
+
+function load_orders(){
+    var container = $(".content-container");
+    container.html('');
+    html = '<div class="admin-challenge"><nav class="navbar navbar-default" role="navigation"><div class="container-fluid">';
+    html += '<div class="navbar-header"><a class="navbar-brand" href="#">Goods</a></div>';
+    html += '<div><button type="button" class="admin-challenge-create btn btn-default navbar-btn">Create</button></div></div></nav></div>';
+    var url = '';
+    $.ajax({
+        type: "GET",
+        url: url,
+        dataType: "json",
+        beforeSend: function() {
+            NProgress.start();
+        },
+        complete: function() {
+            NProgress.done();
+        },
+        success: function(msg) {
+            var available = {
+                'order_id': 'ID',
+                'user_id': 'User',
+                'item_id': 'Item',
+                'amount': 'Amount',
+                'rcv_name': 'Receiver',
+                'rcv_address': 'Address',
+                'rcv_phone': 'Phone',
+                'status': 'Status',
+                'time': 'Add Time'
+            };
+            var available_keys = Object.keys(available);
+            var order_info = msg.items;
+            html += '<div class="table-responsive admin-items"><table class="table table-hover">';
+            html += '<thead><tr>';
+            for (var i = 0; i < available_keys.length; i++) {
+                html += '<th><span class="admin-items-key">' + available[available_keys[i]] + '</th>';
+            }
+            html += '<th><span class="admin-items-key">' + 'Confirm' + '</th>';
+            html += '<th><span class="admin-items-key">' + 'Delete' + '</th>';
+            html += '</span></tr></thead><tbody>';
+            if (order_info != null) {
+                for (var i = 0; i < order_info.length; i++) {
+                    order_info[i].time = TimeStamp2Date(order_info[i].add_time);
+                    order_info[i].user_id = get_username_by_user_id(order_info[i].user_id );
+                    order_info[i].item_id = get_item_number_by_item_id(order_info[i].item_id);
+                    if (order_info[i].status == 0) {
+                        order_info[i].status = '待发货'
+                    } else {
+                        order_info[i].type = '已发货'
+                    }
+                    html += '<tr>';
+                    for (var j = 0; j < available_keys.length; j++) {
+                        html += '<td>';
+                        html += '<span class="admin-items-value">';
+                        html += order_info[i][available_keys[j]];
+                        html += '</span>';
+                        html += '</td>';
+                    }
+                    html += '<td><input class="admin-items-cfm" type="button" value="Confirm"/></td>';
+                    html += '<td><input class="admin-orders-del" type="button" value="Delete"/></td>';
+                    html += '</tr>';
+                }
+            }
+            html += '</tbody></table></div>';
+            container.html(html);
+            flush_data();
+
+            $('.admin-orders-cfm').on('click', function() {
+                var order_id = $(this).parent().parent().children('td:first-child').text();
+                win.confirm(
+                    'Warring',
+                    'Confirm this order?',
+                    function(r) {
+                        if (r == false) return;
+                        $.ajax({
+                            url: '/admin/order/confirm/' + order_id,
+                            type: 'GET',
+                            dataType: 'json',
+                            beforeSend: function() {
+                                NProgress.start();
+                            },
+                            complete: function() {
+                                NProgress.done();
+                            },
+                            success: function(msg) {
+                                if (msg.status == 1) {
+                                    show_pnotify("Success!", msg.message, "success");
+                                    load_items();
+                                } else {
+                                    show_pnotify("Failed!", msg.message, "error");
+                                }
+                            }
+                        });
+                    }
+                );
+            });
+
+            $('.admin-orders-del').on('click', function() {
+                var order_id = $(this).parent().parent().children('td:first-child').text();
+                win.confirm(
+                    'Warring',
+                    'Do you really want to delete this order?',
+                    function(r) {
+                        if (r == false) return;
+                        $.ajax({
+                            url: '/admin/order/delete/' + order_id,
+                            type: 'GET',
+                            dataType: 'json',
+                            beforeSend: function() {
+                                NProgress.start();
+                            },
+                            complete: function() {
+                                NProgress.done();
+                            },
+                            success: function(msg) {
+                                if (msg.status == 1) {
+                                    show_pnotify("Success!", msg.message, "success");
+                                    load_items();
+                                } else {
+                                    show_pnotify("Failed!", msg.message, "error");
+                                }
+                            }
+                        });
+                    }
+                );
+            });
+        }
+    });
+}
