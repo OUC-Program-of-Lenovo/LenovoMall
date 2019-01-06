@@ -81,6 +81,8 @@ $route['admin/user/delete/(:num)'] = 'user/delete_user';
 $route['admin/items/all'] = 'user/get_all_items_info';
 $route['admin/items/create'] = 'user/get_all_items_info';
 $route['admin/items/update/(:num)'] = 'user/get_all_items_info';
+$route['admin/items/online/(:num)'] = 'item/online';
+$route['admin/items/offline/(:num)'] = 'item/get_all_items_info';
 
 /*Items*/
 $route['items'] = 'item/items';

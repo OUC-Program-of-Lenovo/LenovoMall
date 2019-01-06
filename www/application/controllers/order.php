@@ -1,5 +1,6 @@
 <?php
-class order extends CI_Controller {
+class order extends CI_Controller
+{
     public function __construct()
     {
         parent::__construct();
@@ -27,123 +28,140 @@ class order extends CI_Controller {
 /////////////////////////
 
 //1.生成订单
-    public function create_order($item_id){
-        $data=array(
-            'order_id'=>0,
-            'user_id'=>$this->session->user_id,
-            'item_id'=>$item_id,
-            'amount'=>1,
-            'rcv_address'=>$this->user_model->get_rcv_phone_by_user_id($user_id)，
-            'rcv_phone'=>$this->user_model->get_rcv_address_by_user_id($user_id)，
-            'rcv_name'=>$this->input->post('rcv_name'),
-            'postscript'=>"无备注",
-            'order_state'=>0,
-            'time'=>time(),
+    public function create_order($item_id)
+    {
+        $data = array(
+            'order_id' => 0,
+            'user_id' => $this->session->user_id,
+            'item_id' => $item_id,
+            'amount' => 1,
+            'rcv_address' => $this->input->post(rcv_address),
+            'rcv_phone' => $this->user_model->get_rcv_address_by_user_id($this->session->user_id),
+            'rcv_name' => $this->input->post('rcv_name'),
+            'postscript' => "无备注",
+            'order_state' => 0,
+            'time' => time(),
         );
 
         return $this->db->insert_order($data);
     }
 
 //2.修改rcv_address
-    public function modify_adress(){
-        $order_id =>$this->session->order_id;
+    public function modify_adress()
+    {
+        $order_id = $this->session->order_id;
         $this->order_model->update_rcv_address($order_id);
     }
 
 //3.修改rcv_phone
-    public function modify_phone(){
+    public function modify_phone()
+    {
         $order_id = $this->session->order_id;
         $this->order_model->update_rcv_phone($order_id);
     }
 
 //4.修改rcv_name
-    public function modify_adress(){
+    public function modify_rcv_name()
+    {
         $order_id = $this->session->order_id;
         $this->order_model->update_rcv_name($order_id);
     }
 
 //5.修改post_script
-    public function modify_post_script(){
+    public function modify_post_script()
+    {
         $order_id = $this->session->order_id;
         $this->order_model->update_post_script($order_id);
     }
 
 //6.修改amount
-    public function modify_adress(){
+    public function modify_amount()
+    {
         $order_id = $this->session->order_id;
         $this->order_model->update_amount($order_id);
     }
 
 
 //7.确认订单
-    public function order_confirm(){
+    public function order_confirm()
+    {
         $order_id = $this->session->order_id;
         $status = 1;
-        $this->order_model->change_order_status($order_id,$status);
+        $this->order_model->change_order_status($order_id, $status);
     }
+
 //8.取消订单
-    public function order_cancel(){
+    public function order_cancel()
+    {
         $order_id = $this->session->order_id;
         $status = 2;
-        $this->order_model->change_order_status($order_id,$status);
+        $this->order_model->change_order_status($order_id, $status);
     }
 
 //9.发货
-    public function apply_for_refund(){
+/*
+    public function apply_for_refund()
+    {
         $order_id = $this->session->order_id;
         $status = 3;
-        $this->order_model->change_order_status($order_id,$status);
+        $this->order_model->change_order_status($order_id, $status);
     }
+
 //10.确认收货
-    public function apply_for_refund(){
+    public function apply_for_refund()
+    {
         $order_id = $this->session->order_id;
         $status = 4;
-        $this->order_model->change_order_status($order_id,$status);
+        $this->order_model->change_order_status($order_id, $status);
     }
 
 //11.用户申请退款
-    public function apply_for_refund(){
+    public function apply_for_refund()
+    {
         $order_id = $this->session->order_id;
         $status = 5;
-        $this->order_model->change_order_status($order_id,$status);
+        $this->order_model->change_order_status($order_id, $status);
     }
-
+*/
 //12.管理员处理退款申请
-    public function refund(){
+    public function refund()
+    {
         $order_id = $this->session->order_id;
         $status = 6;
-        $this->order_model->change_order_status($order_id,$status);
-    } 
+        $this->order_model->change_order_status($order_id, $status);
+    }
 
 //13.显示所有订单
 
-    public function order(){
-        $data['order'] =>$this->order_model->get_order();
-        echo json_encode(array('order'=>$data['order']));
+    public function order()
+    {
+        $data['order'] = $this->order_model->get_order();
+        echo json_encode(array('order' => $data['order']));
     }
 
 //14.查询:根据id进行查询
 
-    public function find_order_by_id($order_id){
-        $data['order'] = $this->items_model->get_order($item_id);
+    public function find_order_by_id($order_id)
+    {
+        $data['order'] = $this->items_model->get_order($order_id);
         if (empty($data['order'])) {
             echo json_encode(array(
                 'message' => 'Not found!'
             ));
         } else {
-                echo json_encode(array(
-                    'order' => $data['order']
-                ));
+            echo json_encode(array(
+                'order' => $data['order']
+            ));
         }
     }
 
- // 15.set session: order_id
+    // 15.set session: order_id
 
-     public function set_session_by_order_id($order_id){
+    public function set_session_by_order_id($order_id)
+    {
         // set session
         $this->session->set_orderdata($order_id);
-    }  
-    
-
+    }
+}
 
 ?>
