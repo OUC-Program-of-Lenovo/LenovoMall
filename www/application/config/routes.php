@@ -67,7 +67,7 @@ $route['user/check/captcha'] = 'user/check_captcha_current';
 $route['user/get_captcha'] = 'user/get_captcha';
 
 $route['user/active/(:any)'] = 'user/active';
-
+$route['user/order/all'] = 'order/get_all_order';
 $route['user/cart/add/(:num)'] = 'user/add_cart';
 $route['user/cart/delete/(:num)'] = 'user/delete_cart';
 $route['user/cart'] = 'user/get_cart';
