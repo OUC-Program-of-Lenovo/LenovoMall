@@ -5,6 +5,7 @@ class order extends CI_Controller
     {
         parent::__construct();
         $this->load->model('order_model');
+        $this->load->model('items_model');
         $this->load->helper('url');
         $this->load->model('User_model');//可能还需要一个通过user_id获取电话号码的函数
         $this->load->library('session');
@@ -23,6 +24,7 @@ class order extends CI_Controller
 //11.删除订单
 //12.把order_id存到session中
 //13.通过user_id获得它所有的订单
+//14.把购物车里不同种类的电脑都生成一个订单
 /////////////////////////
 ///session是这么用mie？///
 /////////////////////////
@@ -61,13 +63,13 @@ class order extends CI_Controller
         }
     }
 //1.生成订单
-    public function create_order($item_id)
+    public function create_order($item_id，$amount)
     {
         $data = array(
             'order_id' => 0,
             'user_id' => $this->session->user_id,
             'item_id' => $item_id,
-            'amount' => 1,
+            'amount' => $amount,
             'rcv_address' => $this->input->post('rcv_address'),
             'rcv_phone' => $this->user_model->get_phone_by_user_id($this->session->user_id),
             'rcv_name' => $this->input->post('rcv_name'),
@@ -313,6 +315,31 @@ class order extends CI_Controller
         ));
 
 	}
+
+
+//18.把购物车里每种电脑都建立出一个订单:
+    public function order_all_from_cart(){
+        $user_id = $this->session->user_id;
+        $data = $this->Items_model->getItemsByUserId($user_id);
+        if (Empty($data)) {
+            echo json_encode(array(
+                'status' => 0,
+                'message' => 'There is no item!'
+            ));
+        } else {
+            echo json_encode(array(
+                'status' => 1,
+                'items' => $data
+            ));
+        }
+        for($i = 0, $i<count($items), $i++){
+            $item_id = $items[$i]['item_id'];
+            $amount = $items[$i]['num'];
+            create_order($item_id，$amount);
+        }
+
+    }
+        
 
 
 
