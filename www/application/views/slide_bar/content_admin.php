@@ -21,7 +21,7 @@
                 <a href="javascript:load_items();">Goods</a>
             </li>
             <li>
-                <a href="javascript:;">Logs</a>
+                <a href="javascript:load_orders();">Orders</a>
             </li>
             <li>
                 <a href="javascript:;">News</a>

@@ -3,3 +3,4 @@ www/application/config/database.php
 www/application/config/email.php
 *.xml
 *.xml
+www/application/config/database.php

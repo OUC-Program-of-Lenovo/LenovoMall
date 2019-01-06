@@ -71,6 +71,7 @@ $route['user/active/(:any)'] = 'user/active';
 $route['user/cart/add/(:num)'] = 'user/add_cart';
 $route['user/cart/delete/(:num)'] = 'user/delete_cart';
 $route['user/cart'] = 'user/get_cart';
+$route['user/order/submit'] = '';
 
 //$route['user/(:any)'] = 'page/index';
 
