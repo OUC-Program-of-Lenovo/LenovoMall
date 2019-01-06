@@ -256,6 +256,12 @@ class order extends CI_Controller
 //13.显示所有订单
     public function order_all()
     {
+        if ($this->is_logined() === false || $this->is_admin() === false) {
+            die(json_encode(array(
+                'status' => 0,
+                'message' => 'You don\'t have permission to access this!'
+            )));
+        }
         $data['order'] = $this->order_model->get_order();
         echo json_encode(array(
             'status' => 1,
@@ -299,26 +305,21 @@ class order extends CI_Controller
 //17.通过user_id获得它所有的订单
 	public function get_all_order()
     {
-        if ($this->is_logined() === false || $this->is_admin() === false) {
+        $user_id = $this->session->user_id;
+        $orders = $this->order_model->get_all_order($user_id);
+        if ($orders == FALSE) {
             die(json_encode(array(
                 'status' => 0,
-                'message' => 'You don\'t have permission to access this!'
+                'message' => 'get orders failed!'
             )));
-            $user_id = $this->session->user_id;
-            $this->order_model->get_all_order($user_id);
-            if ($this->order_model->get_all_order($user_id)->run() === FALSE) {
-                die(json_encode(array(
-                    'status' => 0,
-                    'message' => 'get orders failed!'
-                )));
-            } else {
-                echo json_encode(array(
-                    'status' => 1,
-                    'message' => 'get orders successfully!'
-                ));
-            }
+        } else {
+            echo json_encode(array(
+                'status' => 1,
+                'value' => $orders
+            ));
         }
     }
+
 
 
 //18.把购物车里每种电脑都建立出一个订单:

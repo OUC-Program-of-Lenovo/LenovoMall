@@ -2,6 +2,12 @@
 <link href="/assets/css/content.css" rel="stylesheet"/>
 <link rel="stylesheet" href="/assets/css/Loading.css">
 <link rel="stylesheet" href="/assets/css/animate.css">
+
+<style>
+    .content-container{
+        overflow: auto;
+    }
+</style>
 <div id="main-scrollbar" class="content-container" data-scrollbar>
 	<h1 class="cover-heading"><span class="hint--right" aria-label="Notice!">Notice</span></h1>
 	<div class="lead">

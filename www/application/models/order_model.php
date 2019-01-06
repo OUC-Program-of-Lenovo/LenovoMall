@@ -121,8 +121,9 @@ class order_model extends CI_Model
 //10. 通过user_id查询用户所有订单   
     public function get_all_order($user_id)
     {
-        $query = $this->db->get_where('orders', array('user_id' => $user_id));
-        return $query->row_array();
+        $sql = 'SELECT * FROM orders WHERE user_id = ?';
+        $query = $this->db->query($sql, $user_id);
+        return $query->result_array();
     }
 }
 ?>
