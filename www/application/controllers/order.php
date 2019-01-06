@@ -36,7 +36,7 @@ class order extends CI_Controller {
             'rcv_address'=>$this->input->post('rcv_address')，
             'rcv_phone'=>$this->user_model->get_rcv_address_by_user_id($user_id)，
             'rcv_name'=>$this->input->post('rcv_name'),
-            'postscript'=>"无备注",
+//            'postscript'=>"无备注",
             'status'=>0,
             'time'=>time(),
         );
@@ -93,7 +93,7 @@ class order extends CI_Controller {
     }
 
 //5.修改post_script
-    public function modify_post_script(){
+/*    public function modify_post_script(){
         $order_id = $this->session->order_id;
         $this->order_model->update_post_script($order_id);
         if ($this->order_model->update_rcv_post_script($order_id)->run() === FALSE) {
@@ -107,7 +107,7 @@ class order extends CI_Controller {
             'message' => 'Change successfully!'
         ));
     }
-
+*/
 //6.修改amount
     public function modify_adress(){
         $order_id = $this->session->order_id;
