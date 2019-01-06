@@ -11,7 +11,7 @@
 **`snd_address` varchar(64) NOT NULL,
 **`snd_name` varchar(16) NOT NULL,
 **`snd_phone` varchar(11) NOT NULL,
-  `post_script` string default:"无备注"
+**`post_script` string default:"无备注"
   `status` int(11) NOT NULL(default 0:待确认，1：待付款，2.已取消，3.待发货，4.待收货，5.待退款，6.已退款)
   `time` varchar(11) NOT NULL,
 */
@@ -30,6 +30,7 @@ class order_model extends CI_Model {
 5.通过order_id进行查询订单
 6.通过order_id更新status
 7.删除订单
+8.通过user_id查询用户所有订单
 */
 
 
@@ -67,14 +68,14 @@ class order_model extends CI_Model {
     }
 
 //5.修改post_script
-    public function update_post_script($order_id){
+/*    public function update_post_script($order_id){
         return  $this->db;
         $post_script = $this->input->post('post_script');        
         ->set(array('post_script'=>$post_script))
         ->where(array('order_id'=>$order_id))
         ->update('order');
     }
-
+*/
 //6.修改rcv_name
     public function update_rcv_name($order_id){
         return  $this->db;
@@ -84,7 +85,7 @@ class order_model extends CI_Model {
         ->update('order');
     }
 
-//7.查询订单
+//7.通过order_id查询订单
     public function get_order($id=-1)
     {
         if($id==-1){
@@ -114,6 +115,12 @@ class order_model extends CI_Model {
         return $this->db->delete('order',array('order_id'=>$order_id));
     }
     
+//10. 通过user_id查询用户所有订单   
+    public function get_all_order($user_id)
+    {
+        $query = $this->db->get_where('order', array('user_id' => $user_id));
+        return $query->row_array();
+    }
 
 
     
