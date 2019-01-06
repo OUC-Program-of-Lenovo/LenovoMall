@@ -11,7 +11,7 @@
 **`snd_address` varchar(64) NOT NULL,
 **`snd_name` varchar(16) NOT NULL,
 **`snd_phone` varchar(11) NOT NULL,
-**`post_script` string default:"无备注"
+  `post_script` string default:"无备注"
   `status` int(11) NOT NULL(default 0:待确认，1：待付款，2.已取消，3.待发货，4.待收货，5.待退款，6.已退款)
   `time` varchar(11) NOT NULL,
 */
@@ -67,14 +67,14 @@ class order_model extends CI_Model {
     }
 
 //5.修改post_script
-/*    public function update_post_script($order_id){
+    public function update_post_script($order_id){
         return  $this->db;
         $post_script = $this->input->post('post_script');        
         ->set(array('post_script'=>$post_script))
         ->where(array('order_id'=>$order_id))
         ->update('order');
     }
-*/
+
 //6.修改rcv_name
     public function update_rcv_name($order_id){
         return  $this->db;

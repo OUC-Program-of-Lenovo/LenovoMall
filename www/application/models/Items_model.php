@@ -57,12 +57,14 @@ class items_model extends CI_Model
     public function getItemsByUserId($user_id)
     {
         $queryUser = $this->db->get_where('users', array('user_id' => $user_id));
-        $queryIds = $queryUser['shopping_cart'];
+        $result=$queryUser->row_array();
+        $queryIds = $result['shopping_cart'];
         $queryIdsFinal = explode('|', $queryIds);
-        for ($i = 0; $i < count($queryIdsFinal); $i++) {
-            $query[$i] = $this->db->get_where('items', array('item_id' => intval($queryIdsFinal[$i])));
+        $query = array();
+        for ($i = 1; $i < count($queryIdsFinal)-1; $i++) {
+            $query[$i] = $this->db->get_where('items', array('item_id' => intval($queryIdsFinal[$i])))->row_array();
         }
-        return $query->result_array();
+        return $query;
     }
 
     //将商品加入购物车
@@ -95,20 +97,7 @@ class items_model extends CI_Model
 
     }
 
-    /**
-     * Get item number by item id
-     * @param $item_id: int
-     * @return string
-     */
-    public function get_username_by_user_id($item_id)
-    {
-        $query = $this->db
-            ->select('number')
-            ->where('item_id', $item_id)
-            ->get('items');
-        $result = $query->row_array()['number'];
-        return $result;
-    }
+
 }
 
 

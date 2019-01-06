@@ -13,7 +13,7 @@
             <span class="the-btn fa fa-plus"></span>
         </div>
         <ul>
-            <li>
+            <li class="goods-all">
                 <a href="#">All</a>
             </li>
         </ul>
@@ -22,12 +22,12 @@
     <li class="cd-write-up">
         <div>
             <span class="menu-icons fa fa-bookmark"></span>
-            <a href="#">Orders</a>
+            <a href="#">Side Bar 1</a>
             <span class="the-btn fa fa-plus"></span>
         </div>
         <ul>
             <li>
-                <a href="#">All</a>
+                <a href="#">None</a>
             </li>
         </ul>
     </li>

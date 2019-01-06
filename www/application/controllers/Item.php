@@ -194,7 +194,7 @@ class item extends CI_Controller
      * */
     public function get_itemsInCart()
     {
-        $data = $this->Items_model->getItemsByUserId($this->session->uer_id);
+        $data = $this->items_model->getItemsByUserId($this->session->user_id);
         if (Empty($data)) {
             echo json_encode(array(
                 'status' => 0,
@@ -213,7 +213,7 @@ class item extends CI_Controller
      * 参数：user_id,item_id*/
     public function deleteItemInCart($item_id)
     {
-        return $this->Items_model->deleteItemfromCart($this->session->uer_id, $item_id);
+        return $this->items_model->deleteItemfromCart($this->session->uer_id, $item_id);
     }
 
     /*
@@ -221,7 +221,7 @@ class item extends CI_Controller
      * 参数：user_id,item_id*/
     public function insertItemInCart($item_id)
     {
-        return $this->Items_model->putItemIntoCart($this->session->uer_id, $item_id);
+        return $this->items_model->putItemIntoCart($this->session->uer_id, $item_id);
     }
 
 
