@@ -515,6 +515,7 @@ function get_username_by_user_id(user_id) {
         type: "GET",
         url: url,
         dataType: "json",
+        async: false,
         beforeSend: function() {
             NProgress.start();
         },
@@ -524,6 +525,7 @@ function get_username_by_user_id(user_id) {
         success: function(msg) {
             if(msg.status == 1) {
                 username = msg.value;
+                console.log(username);
             }
         }
     });
@@ -571,7 +573,7 @@ function load_orders(){
             html += '</span></tr></thead><tbody>';
             if (order_info != null) {
                 for (var i = 0; i < order_info.length; i++) {
-                    order_info[i].time = TimeStamp2Date(order_info[i].add_time);
+                    order_info[i].time = TimeStamp2Date(order_info[i].time);
                     order_info[i].user_id = get_username_by_user_id(order_info[i].user_id );
                     order_info[i].item_id = get_item_number_by_item_id(order_info[i].item_id);
                     if (order_info[i].status == 0) {

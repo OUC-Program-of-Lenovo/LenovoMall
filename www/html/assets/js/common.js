@@ -91,6 +91,7 @@ function get_item_number_by_item_id(item_id) {
         type: "GET",
         url: url,
         dataType: "json",
+        async: false,
         beforeSend: function() {
             NProgress.start();
         },

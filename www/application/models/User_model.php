@@ -35,6 +35,20 @@ class User_model extends CI_Model
     }
 
     /**
+     * Get order data by user id
+     * @param $user_id: int
+     * @return array
+     */
+    public function get_order_data_by_user_id($user_id)
+    {
+        $query = $this->db
+            ->select('rcv_address, rcv_name, phone')
+            ->where('user_id', $user_id)
+            ->get('users');
+        return $query->row_array();
+    }
+
+    /**
      * Get user id by email
      * @param $email: string
      * @return int

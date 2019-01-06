@@ -98,7 +98,7 @@ $route['items/set_item']='item/set_item';
 $route['items/update_itemNameById/(:num)']='item/update_itemNameById/$1';
 $route['items/surplusDecrease/(:num)']='item/surplusDecrease/$1';
 $route['items/get_itemsInCart']='item/get_itemsInCart';
-
+$route['item/get_number/(:num)'] = 'item/get_number';
 
 /* Index */
 

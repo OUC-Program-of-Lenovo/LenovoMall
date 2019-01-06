@@ -112,7 +112,14 @@ class items_model extends CI_Model
 
     }
 
-
+    public function get_number_by_item_id($item_id)
+    {
+        $query = $this->db
+            ->where('item_id', $item_id)
+            ->get('items');
+        $result = $query->row_array();
+        return intval($result['number']);
+    }
 }
 
 

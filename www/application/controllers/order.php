@@ -7,7 +7,7 @@ class order extends CI_Controller
         $this->load->model('order_model');
         $this->load->model('items_model');
         $this->load->helper('url');
-        $this->load->model('User_model');//可能还需要一个通过user_id获取电话号码的函数
+        $this->load->model('user_model');//可能还需要一个通过user_id获取电话号码的函数
         $this->load->library('session');
     }
 ////功能：
@@ -36,6 +36,7 @@ class order extends CI_Controller
     {
         return ($this->session->user_type === '1');
     }
+
     /**
      * Check overdue
      * @param $alive_time : int
@@ -45,6 +46,7 @@ class order extends CI_Controller
     {
         return (time() > $alive_time);
     }
+
     /**
      * Check login
      * @return bool
@@ -63,22 +65,22 @@ class order extends CI_Controller
         }
     }
 //1.生成订单
-    public function create_order($item_id，$amount)
+    public function create_order($item_id, $amount)
     {
+        $odrer_data = $this->user_model->get_order_data_by_user_id($this->session->user_id);
         $data = array(
-            'order_id' => 0,
             'user_id' => $this->session->user_id,
             'item_id' => $item_id,
             'amount' => $amount,
-            'rcv_address' => $this->input->post('rcv_address'),
-            'rcv_phone' => $this->user_model->get_phone_by_user_id($this->session->user_id),
-            'rcv_name' => $this->input->post('rcv_name'),
-//            'postscript'=>"无备注",
+            'rcv_address' => $odrer_data['rcv_address'],
+            'rcv_phone' => $odrer_data['phone'],
+            'rcv_name' => $odrer_data['rcv_name'],
             'status' => 0,
             'time' => time(),
         );
         return $this->order_model->insert_order($data);
     }
+
 //2.修改rcv_address
     public function modify_adress()
     {
@@ -293,56 +295,42 @@ class order extends CI_Controller
         }
         $this->order_model->delete_order_by_order_id($order_id);
     }
-}
 
 //17.通过user_id获得它所有的订单
-	public function get_all_order(){
-		if ($this->is_logined() === false || $this->is_admin() === false) {
+	public function get_all_order()
+    {
+        if ($this->is_logined() === false || $this->is_admin() === false) {
             die(json_encode(array(
                 'status' => 0,
                 'message' => 'You don\'t have permission to access this!'
             )));
-        $user_id = $this->session->user_id;
-		$this->order_model->get_all_order($user_id);
-		if ($this->order_model->get_all_order($user_id)->run() === FALSE) {
-            die(json_encode(array(
-                'status' => 0,
-                'message' => 'get orders failed!'
-            )));
-        } else echo json_encode(array(
-            'status' => 1,
-            'message' => 'get orders successfully!'
-        ));
-
-	}
+            $user_id = $this->session->user_id;
+            $this->order_model->get_all_order($user_id);
+            if ($this->order_model->get_all_order($user_id)->run() === FALSE) {
+                die(json_encode(array(
+                    'status' => 0,
+                    'message' => 'get orders failed!'
+                )));
+            } else {
+                echo json_encode(array(
+                    'status' => 1,
+                    'message' => 'get orders successfully!'
+                ));
+            }
+        }
+    }
 
 
 //18.把购物车里每种电脑都建立出一个订单:
     public function order_all_from_cart(){
         $user_id = $this->session->user_id;
-        $data = $this->Items_model->getItemsByUserId($user_id);
-        if (Empty($data)) {
-            echo json_encode(array(
-                'status' => 0,
-                'message' => 'There is no item!'
-            ));
-        } else {
-            echo json_encode(array(
-                'status' => 1,
-                'items' => $data
-            ));
+        $data = $this->items_model->getItemsByUserId($user_id);
+        foreach ($data as $key => $value)
+        {
+            $item_id = $value['item_id'];
+            $amount = $value['num'];
+            $this->create_order($item_id, $amount);
         }
-        for($i = 0, $i<count($items), $i++){
-            $item_id = $items[$i]['item_id'];
-            $amount = $items[$i]['num'];
-            create_order($item_id，$amount);
-        }
-
     }
-        
-
-
-
-
-
+}
 ?>

@@ -224,6 +224,15 @@ class item extends CI_Controller
         return $this->items_model->putItemIntoCart($this->session->uer_id, $item_id);
     }
 
+    public function get_number()
+    {
+        $item_id = $this->uri->segment(3);
+        $number = $this->items_model->get_number_by_item_id($item_id);
+        echo json_encode(array(
+            'status' => 1,
+            'value' => $number
+        ));
+    }
 
     /**
      * [API] Get item number by item id
