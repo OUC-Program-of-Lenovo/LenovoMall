@@ -67,7 +67,7 @@ $route['user/check/captcha'] = 'user/check_captcha_current';
 $route['user/get_captcha'] = 'user/get_captcha';
 
 $route['user/active/(:any)'] = 'user/active';
-$route['user/order/all'] = 'order/get_all_order';
+
 $route['user/cart/add/(:num)'] = 'user/add_cart';
 $route['user/cart/delete/(:num)'] = 'user/delete_cart';
 $route['user/cart'] = 'user/get_cart';
@@ -83,9 +83,9 @@ $route['admin/items/all'] = 'user/get_all_items_info';
 $route['admin/items/update/(:num)'] = 'user/get_all_items_info';
 $route['admin/items/online/(:num)'] = 'item/online';
 $route['admin/items/offline/(:num)'] = 'item/get_all_items_info';
-$route['admin/order/confirm/(:num)'] = 'order/order_confirm';
-$route['admin/order/delete/(:num)'] = 'order/delete';
-$route['admin/order/all'] = 'order/order_all';
+$route['admin/order/confirm/(:num)'] = '';
+$route['admin/order/delete/(:num)'] = '';
+$route['admin/order/all'] = '';
 
 
 /*Items*/

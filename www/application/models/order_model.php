@@ -30,7 +30,6 @@ class order_model extends CI_Model {
 5.通过order_id进行查询订单
 6.通过order_id更新status
 7.删除订单
-8.通过user_id查询用户所有订单
 */
 
 
@@ -85,7 +84,7 @@ class order_model extends CI_Model {
         ->update('order');
     }
 
-//7.通过order_id查询订单
+//7.查询订单
     public function get_order($id=-1)
     {
         if($id==-1){
@@ -115,12 +114,6 @@ class order_model extends CI_Model {
         return $this->db->delete('order',array('order_id'=>$order_id));
     }
     
-//10. 通过user_id查询用户所有订单   
-    public function get_all_order($user_id)
-    {
-        $query = $this->db->get_where('order', array('user_id' => $user_id));
-        return $query->row_array();
-    }
 
 
     

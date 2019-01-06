@@ -133,17 +133,21 @@ $(document).ready(function(){
     url:"/items/get_itemsInCart",
     dataType:"json",
     success:function(msg){//msg
-        console.log(111);
+        console.log('mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm');
         //if(msg.status==1)//{
        // var cartInfo=json.parse(msg.value);
        $(".cart-tbody").html('');
        GoodsInfo = msg.items;
-       for(i=0;i<Object.keys(GoodsInfo).length;i++)
+       var goods = GoodsInfo
+       console.log(GoodsInfo);
+       var keys = Object.keys(GoodsInfo);
+       for(i=0;i<keys.length;i++)
         {  // console.log(i);
-        	            console.log("From first-source:"+GoodsInfo[i]);
-            var name=GoodsInfo[i].name;
-            var price=GoodsInfo[i].price;
-            var num=GoodsInfo[i].number;
+        	            console.log("From first-source:"+GoodsInfo[keys[i]]);
+            var name=GoodsInfo[keys[i]].name;
+
+            var price=GoodsInfo[keys[i]].price;
+            var num=GoodsInfo[keys[i]].num;
 
             var table=$(".cart-tbody");
             var table_data=$("<tr>").appendTo(table);
@@ -156,6 +160,7 @@ $(document).ready(function(){
 })//.ajax
 }
 
+ GetGoods();
 //购物车更新(用户登录后，自动显示其购物车中的信息)
 $(document).ready(function()
 {

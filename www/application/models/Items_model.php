@@ -53,6 +53,7 @@ class items_model extends CI_Model
 
 
     /************************************************购物车中商品的操作*****************************************************************/
+
     //购物车中查询,通过用户ID获得物品数组
     public function getItemsByUserId($user_id)
     {
@@ -60,9 +61,23 @@ class items_model extends CI_Model
         $result=$queryUser->row_array();
         $queryIds = $result['shopping_cart'];
         $queryIdsFinal = explode('|', $queryIds);
+        $value = array();
+        for ($i = 1; $i < count($queryIdsFinal) - 1; $i++) {
+                if (array_key_exists($queryIdsFinal[$i], $value) === true) {
+                    $value[$queryIdsFinal[$i]]++;
+                } else {
+                    $value[$queryIdsFinal[$i]] = 1;
+                }
+
+            }
         $query = array();
         for ($i = 1; $i < count($queryIdsFinal)-1; $i++) {
-            $query[$i] = $this->db->get_where('items', array('item_id' => intval($queryIdsFinal[$i])))->row_array();
+            if (array_key_exists($queryIdsFinal[$i], $query) === false) {
+                $query[intval($queryIdsFinal[$i])] = $this->db->get_where(
+                    'items', array('item_id' => intval($queryIdsFinal[$i]))
+                )->row_array();
+                $query[intval($queryIdsFinal[$i])]['num'] = $value[intval($queryIdsFinal[$i])];
+            }
         }
         return $query;
     }
