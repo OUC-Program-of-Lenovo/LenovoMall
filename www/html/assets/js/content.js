@@ -221,6 +221,7 @@ $(document).ready(function(){
     		data:"Goods from cart to order!",
     		success:function(){
     			console.log("order get.");
+    			GetGoods();
     		}
 		})
 	})
