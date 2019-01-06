@@ -367,4 +367,13 @@ class User_model extends CI_Model
         $raw = $query->row();
         return ($raw->count > 0);
     }
+
+    public function get_phone_by_user_id($user_id)
+    {
+        $query = $this->db
+            ->where('user_id', $user_id)
+            ->get('users');
+        $result = $query->row_array();
+        return $result['phone'];
+    }
 }
