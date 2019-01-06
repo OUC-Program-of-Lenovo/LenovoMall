@@ -61,7 +61,7 @@ function show_goods(){
                         	dialog.attr("title",id);
                             dialog_content.find("img").attr("src",jsonObj[i].img);
                             dialog_text.find("h1").text(jsonObj[i].name);
-                            dialog_text.find("p").text(jsonObj[i].price);
+                            dialog_text.find("p").text("￥"+jsonObj[i].price);
                             $(".description").text(jsonObj[i].description);
                         }
                     }
@@ -219,9 +219,10 @@ $(document).ready(function(){
 			type:"POST",
     		url:"/user/order/submit",
     		data:"Goods from cart to order!",
-    		success:function(){
-    			console.log("order get.");
+    		success:function(cost){
+    			console.log("order get."+ cost);
     			GetGoods();
+    			alert("Your order has been sumitted.The cost is:￥"+ cost);
     		}
 		})
 	})

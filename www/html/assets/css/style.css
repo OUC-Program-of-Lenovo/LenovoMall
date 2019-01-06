@@ -277,7 +277,7 @@
     display: inline-block;
     position: absolute;
     left: 15px;
-    top: 50%;
+    top: 26%;
     bottom: auto;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
@@ -305,6 +305,14 @@
 
 .cd-form label.cd-password {
     background-image: url("../img/cd-icon-password.svg");
+}
+
+.form-captcha-label {
+    top:35%!important;
+}
+
+.admin-challenge-label-name,.admin-challenge-label-score,.admin-challenge-label-flag {
+    top: 50%!important;
 }
 
 .cd-form input {
