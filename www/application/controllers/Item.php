@@ -121,7 +121,7 @@ class item extends CI_Controller
             )));
         }
 
-        $filename = md5(md5($this->session->username));
+        $filename = md5(md5($this->input->post('name')));
         $ext = strtolower(pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION));
         /* Upload config */
         $config['upload_path'] = '../html/upload/images/picture/';

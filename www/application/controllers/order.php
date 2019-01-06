@@ -33,12 +33,12 @@ class order extends CI_Controller {
             'user_id'=>$this->session->user_id,
             'item_id'=>$item_id,
             'amount'=>1,
-            'rcv_address'=>$this->input->post('rcv_address')，
-            'rcv_phone'=>$this->user_model->get_rcv_address_by_user_id($user_id)，
-            'rcv_name'=>$this->input->post('rcv_name'),
+            'rcv_address'=>$this->input->post('rcv_address'),
+            'rcv_phone'= $this->user_model->get_rcv_address_by_user_id($user_id),
+            'rcv_name'= $this->input->post('rcv_name'),
 //            'postscript'=>"无备注",
-            'status'=>0,
-            'time'=>time(),
+            'status'= 0,
+            'time'= time(),
         );
 
         return $this->order_model->insert_order($data);
