@@ -38,7 +38,6 @@
         <script type="text/javascript" src="/assets/js/pnotify.custom.min.js"></script>
         <script type="text/javascript" src="/assets/js/common.js"></script>
         <script type="text/javascript" src="/assets/js/cart.js"></script>
-        <script type="text/javascript" src="/assets/js/orders.js"></script>
 
 <!--    <audio id="message_sound">
             <source src="/assets/sounds/message.wav" type="audio/wav">

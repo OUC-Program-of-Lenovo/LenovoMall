@@ -160,10 +160,16 @@ class order extends CI_Controller
 //7.确认订单
     public function order_confirm()
     {
-        $order_id = $this->session->order_id;
+        if ($this->is_logined() === false || $this->is_admin() === false) {
+            die(json_encode(array(
+                'status' => 0,
+                'message' => 'You don\'t have permission to access this!'
+            )));
+        }
+
+        $order_id = intval($this->uri->segment(4));
         $status = 1;
-        $this->order_model->change_order_status($order_id, $status);
-        if ($this->order_model->change_order_status($order_id, $status)->run() === FALSE) {
+        if ($this->order_model->change_order_status($order_id, $status) === FALSE) {
             die(json_encode(array(
                 'status' => 0,
                 'message' => 'Confirm failed!'
@@ -291,7 +297,7 @@ class order extends CI_Controller
         $this->session->set_userdata($order_id);
     }
 //16.通过order_id删除订单
-    public function delete($order_id)
+    public function delete()
     {
         if ($this->is_logined() === false || $this->is_admin() === false) {
             die(json_encode(array(
@@ -299,7 +305,16 @@ class order extends CI_Controller
                 'message' => 'You don\'t have permission to access this!'
             )));
         }
-        $this->order_model->delete_order_by_order_id($order_id);
+        $order_id = intval($this->uri->segment(4));
+        if ($this->order_model->delete_order_by_order_id($order_id) === FALSE) {
+            die(json_encode(array(
+                'status' => 0,
+                'message' => 'Delete failed!'
+            )));
+        } else echo json_encode(array(
+            'status' => 1,
+            'message' => 'Delete successfully!'
+        ));
     }
 
 //17.通过user_id获得它所有的订单
@@ -326,14 +341,21 @@ class order extends CI_Controller
     public function order_all_from_cart(){
         $user_id = $this->session->user_id;
         $data = $this->items_model->getItemsByUserId($user_id);
+        $price = 0;
         foreach ($data as $key => $value)
         {
             $item_id = $value['item_id'];
             $amount = $value['num'];
             $this->create_order($item_id, $amount);
+            $price += $value['num'] * $value['price'];
         }
 
         $this->user_model->clean_cart($user_id);
+
+        echo json_encode(array(
+            'status' => 1,
+            'value' => $price
+        ));
     }
 }
 ?>

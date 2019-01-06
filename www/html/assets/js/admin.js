@@ -264,7 +264,7 @@ function load_items() {
                 html += '<th><span class="admin-items-key">' + available[available_keys[i]] + '</th>';
             }
             // html += '<th><span class="admin-items-key">' + 'Edit' + '</th>';
-            html += '<th><span class="admin-items-key">' + 'Del' + '</th>';
+            html += '<th><span class="admin-items-key">' + 'Delete' + '</th>';
             html += '</span></tr></thead><tbody>';
             if (challenge_info != null) {
                 for (var i = 0; i < challenge_info.length; i++) {
@@ -536,8 +536,8 @@ function load_orders(){
     var container = $(".content-container");
     container.html('');
     html = '<div class="admin-challenge"><nav class="navbar navbar-default" role="navigation"><div class="container-fluid">';
-    html += '<div class="navbar-header"><a class="navbar-brand" href="#">Goods</a></div>';
-    html += '<div><button type="button" class="admin-challenge-create btn btn-default navbar-btn">Create</button></div></div></nav></div>';
+    html += '<div class="navbar-header"><a class="navbar-brand" href="#">Orders</a></div>';
+    html += '</div></nav></div>';
     var url = '/admin/order/all';
     $.ajax({
         type: "GET",
@@ -579,7 +579,7 @@ function load_orders(){
                     if (order_info[i].status == 0) {
                         order_info[i].status = '待发货'
                     } else {
-                        order_info[i].type = '已发货'
+                        order_info[i].status = '已发货'
                     }
                     html += '<tr>';
                     for (var j = 0; j < available_keys.length; j++) {
@@ -589,7 +589,7 @@ function load_orders(){
                         html += '</span>';
                         html += '</td>';
                     }
-                    html += '<td><input class="admin-items-cfm" type="button" value="Confirm"/></td>';
+                    html += '<td><input class="admin-orders-cfm" type="button" value="Confirm"/></td>';
                     html += '<td><input class="admin-orders-del" type="button" value="Delete"/></td>';
                     html += '</tr>';
                 }
@@ -618,7 +618,7 @@ function load_orders(){
                             success: function(msg) {
                                 if (msg.status == 1) {
                                     show_pnotify("Success!", msg.message, "success");
-                                    load_items();
+                                    load_orders();
                                 } else {
                                     show_pnotify("Failed!", msg.message, "error");
                                 }
@@ -648,7 +648,7 @@ function load_orders(){
                             success: function(msg) {
                                 if (msg.status == 1) {
                                     show_pnotify("Success!", msg.message, "success");
-                                    load_items();
+                                    load_orders();
                                 } else {
                                     show_pnotify("Failed!", msg.message, "error");
                                 }
