@@ -116,6 +116,8 @@
     font-weight: 700;
     text-transform: uppercase;
     padding: 8px 20px;
+    display: block;
+    clear: both;
 }
 
 .profile-foot input:hover {

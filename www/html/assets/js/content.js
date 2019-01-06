@@ -59,7 +59,7 @@ function show_goods(){
                     for(i=0;i<jsonObj.length;i++){
                         if(id == jsonObj[i].item_id){
                         	dialog.attr("title",id);
-                            dialog_content.find("img").attr("src",jsonObj[i].img);
+                            dialog_content.find("img").attr("src","/upload/images/picture/"+jsonObj[i].avatar);
                             dialog_text.find("h1").text(jsonObj[i].name);
                             dialog_text.find("p").text("￥"+jsonObj[i].price);
                             $(".description").text(jsonObj[i].description);
@@ -133,29 +133,30 @@ $(document).ready(function(){
     url:"/items/get_itemsInCart",
     dataType:"json",
     success:function(msg){//msg
-        console.log('msg:'+msg);
-        //if(msg.status==1)//{
-       // var cartInfo=json.parse(msg.value);
-       $(".cart-tbody").html('');
-       GoodsInfo = msg.items;
-       var goods = GoodsInfo
-       console.log(GoodsInfo);
-       var keys = Object.keys(GoodsInfo);
-       for(i=0;i<keys.length;i++)
-        {  // console.log(i);
-        	            console.log("From first-source:"+GoodsInfo[keys[i]]);
-            var name=GoodsInfo[keys[i]].name;
+    	if(msg.status=1){
+	        console.log('msg:'+msg);
+	        //if(msg.status==1)//{
+	       // var cartInfo=json.parse(msg.value);
+	       $(".cart-tbody").html('');
+	       GoodsInfo = msg.items;
+	       var goods = GoodsInfo;
+	       console.log(GoodsInfo);
+	       var keys = Object.keys(GoodsInfo);
+	       for(i=0;i<keys.length;i++)
+	        {  // console.log(i);
+	        	            console.log("From first-source:"+GoodsInfo[keys[i]]);
+	            var name=GoodsInfo[keys[i]].name;
 
-            var price=GoodsInfo[keys[i]].price;
-            var num=GoodsInfo[keys[i]].num;
+	            var price=GoodsInfo[keys[i]].price;
+	            var num=GoodsInfo[keys[i]].num;
 
-            var table=$(".cart-tbody");
-            var table_data=$("<tr>").appendTo(table);
-            var table_name=$("<td>").text(name).appendTo(table_data);
-            var table_price=$("<td>").text(price).appendTo(table_data);
-            var table_num=$("<td>").text(num).appendTo(table_data);
-        }
-        //}//if(msg.status==1)
+	            var table=$(".cart-tbody");
+	            var table_data=$("<tr>").appendTo(table);
+	            var table_name=$("<td>").text(name).appendTo(table_data);
+	            var table_price=$("<td>").text(price).appendTo(table_data);
+	            var table_num=$("<td>").text(num).appendTo(table_data);
+	        }
+	        }//}//if(msg.status==1)
     }// success:function
 })//.ajax
 }
@@ -219,7 +220,8 @@ $(document).ready(function(){
 			type:"POST",
     		url:"/user/order/submit",
     		data:"Goods from cart to order!",
-    		success:function(cost){
+    		success:function(msg){
+    			var cost = msg.value;
     			console.log("order get."+ cost);
     			GetGoods();
     			alert("Your order has been sumitted.The cost is:￥"+ cost);
