@@ -92,6 +92,7 @@
 				<p>￥5699.00</p>
 				<button id="sub_num" class="num">-</button><input type="text" id="num" value="1"><button id="add_num" class="num">＋</button>
 				<button id="add_cart">ADD</button>
+				<h6>库存数量：<span>666</span></h6>
 			</div>
 			<p class="description">拯救者 Y7000 15.6英寸游戏笔记本 黑色拯救者 Y7000 15.6英寸游戏笔记本 黑色拯救者 Y7000 15.6英寸游戏笔记本 黑色拯救者 Y7000 15.6英寸游戏笔记本 黑色拯救者 Y7000 15.6英寸游戏笔记本 黑色拯救者 Y7000 15.6英寸游戏笔记本 黑色</p>
 		</div>

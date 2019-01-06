@@ -62,6 +62,7 @@ function show_goods(){
                             dialog_content.find("img").attr("src","/upload/images/picture/"+jsonObj[i].avatar);
                             dialog_text.find("h1").text(jsonObj[i].name);
                             dialog_text.find("p").text("￥"+jsonObj[i].price);
+                            dialog_text.find("span").text(jsonObj[i].amount);
                             $(".description").text(jsonObj[i].description);
                         }
                     }
