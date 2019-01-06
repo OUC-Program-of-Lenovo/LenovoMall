@@ -1,4 +1,3 @@
-<link rel="stylesheet" type="text/css" href="/assets/css/admin.css">
 <script type="text/javascript" src="/assets/js/admin.js"></script>
 <ul id="toggle" class="slide-bar-left">
     <li class="cd-mine">
@@ -48,7 +47,7 @@
         </div>
         <ul>
             <li>
-                <a href="#">All</a>
+                <a href="javascript:load_personal_orders();">All</a>
             </li>
         </ul>
     </li>

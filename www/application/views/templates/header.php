@@ -14,6 +14,7 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css" />
         <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/hint.css/2.5.0/hint.min.css" />
 
+        <link rel="stylesheet" type="text/css" href="/assets/css/admin.css">
         <link rel="stylesheet" type="text/css" href="/assets/css/sliding.css" />
         <link rel="stylesheet" type="text/css" href="/assets/css/muti_blocks.css" />
         <link rel="stylesheet" type="text/css" href="/assets/css/cart.css" />
@@ -37,6 +38,7 @@
         <script type="text/javascript" src="/assets/js/pnotify.custom.min.js"></script>
         <script type="text/javascript" src="/assets/js/common.js"></script>
         <script type="text/javascript" src="/assets/js/cart.js"></script>
+        <script type="text/javascript" src="/assets/js/orders.js"></script>
 
 <!--    <audio id="message_sound">
             <source src="/assets/sounds/message.wav" type="audio/wav">

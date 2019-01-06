@@ -27,7 +27,7 @@
         </div>
         <ul>
             <li>
-                <a href="#">All</a>
+                <a href="javascript:load_personal_orders();">All</a>
             </li>
         </ul>
     </li>

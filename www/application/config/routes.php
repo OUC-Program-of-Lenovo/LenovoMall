@@ -89,6 +89,7 @@ $route['admin/order/all'] = 'order/order_all';
 
 
 /*Items*/
+$route['items/get_number/(:num)'] = 'item/get_item_number_by_item_id';
 $route['items'] = 'item/items';
 $route['items/(:num)']='item/finditemById/$1';
 $route['items/deleteItemById/(:num)']='item/deleteItemById/$1';
@@ -96,6 +97,9 @@ $route['items/set_item']='item/set_item';
 $route['items/update_itemNameById/(:num)']='item/update_itemNameById/$1';
 $route['items/surplusDecrease/(:num)']='item/surplusDecrease/$1';
 $route['items/get_itemsInCart']='item/get_itemsInCart';
+
+/* Orders */
+$route['orders/get'] = '';
 
 /* Index */
 

@@ -239,10 +239,10 @@ class item extends CI_Controller
      */
     public function get_item_number_by_item_id()
     {
-        if ($this->is_logined() === false || $this->is_admin() === false) {
+        if ($this->is_logined() === false) {
             die(json_encode(array(
                 'status' => 0,
-                'message' => 'You don\'t have permission to access this!'
+                'message' => 'You don\'t have permission to access this, Please login first!'
             )));
         }
         $item_id = $this->uri->segment(4);

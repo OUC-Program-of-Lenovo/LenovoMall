@@ -84,6 +84,28 @@ function flush_data() {
     });
 }
 
+function get_item_number_by_item_id(item_id) {
+    var url = '/item/get_number/' + item_id;
+    var number = '';
+    $.ajax({
+        type: "GET",
+        url: url,
+        dataType: "json",
+        beforeSend: function() {
+            NProgress.start();
+        },
+        complete: function() {
+            NProgress.done();
+        },
+        success: function(msg) {
+            if(msg.status == 1) {
+                number = msg.value;
+            }
+        }
+    });
+    return number;
+}
+
 function Date2TimeStamp(date) {
     var time_stamp = new Date(date.replace(/-/g, '/'));
     return time_stamp.getTime();
