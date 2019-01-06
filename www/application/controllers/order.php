@@ -9,7 +9,6 @@ class order extends CI_Controller
         $this->load->model('User_model');//可能还需要一个通过user_id获取电话号码的函数
         $this->load->library('session');
     }
-
 ////功能：
 //1.生成订单
 //2.修改订单
@@ -23,10 +22,10 @@ class order extends CI_Controller
 //10.通过id查询订单
 //11.删除订单
 //12.把order_id存到session中
+//13.通过user_id获得它所有的订单
 /////////////////////////
 ///session是这么用mie？///
 /////////////////////////
-
     /**
      * Check admin
      * @return bool
@@ -35,7 +34,6 @@ class order extends CI_Controller
     {
         return ($this->session->user_type === '1');
     }
-
     /**
      * Check overdue
      * @param $alive_time : int
@@ -45,7 +43,6 @@ class order extends CI_Controller
     {
         return (time() > $alive_time);
     }
-
     /**
      * Check login
      * @return bool
@@ -63,8 +60,6 @@ class order extends CI_Controller
             }
         }
     }
-
-
 //1.生成订单
     public function create_order($item_id)
     {
@@ -80,10 +75,8 @@ class order extends CI_Controller
             'status' => 0,
             'time' => time(),
         );
-
         return $this->order_model->insert_order($data);
     }
-
 //2.修改rcv_address
     public function modify_adress()
     {
@@ -99,7 +92,6 @@ class order extends CI_Controller
             'message' => 'Change successfully!'
         ));
     }
-
 //3.修改rcv_phone
     public function modify_phone()
     {
@@ -115,7 +107,6 @@ class order extends CI_Controller
             'message' => 'Change successfully!'
         ));
     }
-
 //4.修改rcv_name
     public function modify_name()
     {
@@ -131,7 +122,6 @@ class order extends CI_Controller
             'message' => 'Change successfully!'
         ));
     }
-
 //5.修改post_script
     /*    public function modify_post_script(){
             $order_id = $this->session->order_id;
@@ -163,8 +153,6 @@ class order extends CI_Controller
             'message' => 'Change successfully!'
         ));
     }
-
-
 //7.确认订单
     public function order_confirm()
     {
@@ -181,7 +169,6 @@ class order extends CI_Controller
             'message' => 'Confirm successfully!'
         ));
     }
-
 //8.取消订单
     public function order_cancel()
     {
@@ -198,7 +185,6 @@ class order extends CI_Controller
             'message' => 'Cancel successfully!'
         ));
     }
-
 //9.发货
     public function delivering_order()
     {
@@ -215,7 +201,6 @@ class order extends CI_Controller
             'message' => 'deliver successfully!'
         ));
     }
-
 //10.确认收货
     public function delivered_order()
     {
@@ -232,7 +217,6 @@ class order extends CI_Controller
             'message' => 'Confirm receipt successfully!'
         ));
     }
-
 //11.用户申请退款
     public function apply_for_refund()
     {
@@ -249,7 +233,6 @@ class order extends CI_Controller
             'message' => 'apply successfully!'
         ));
     }
-
 //12.管理员处理退款申请
     public function refund()
     {
@@ -266,9 +249,7 @@ class order extends CI_Controller
             'message' => 'Renfund successfully!'
         ));
     }
-
 //13.显示所有订单
-
     public function order_all()
     {
         $data['order'] = $this->order_model->get_order();
@@ -276,11 +257,8 @@ class order extends CI_Controller
             'status' => 1,
             'items' => $data['order']
         ));
-
     }
-
 //14.查询:根据id进行查询
-
     public function find_order_by_id($order_id)
     {
         $data['order'] = $this->items_model->get_order($order_id);
@@ -296,16 +274,12 @@ class order extends CI_Controller
             ));
         }
     }
-
     // 15.set session: order_id
-
     public function set_session_by_order_id($order_id)
     {
         // set session
         $this->session->set_userdata($order_id);
-
     }
-
 //16.通过order_id删除订单
     public function delete($order_id)
     {
@@ -315,10 +289,33 @@ class order extends CI_Controller
                 'message' => 'You don\'t have permission to access this!'
             )));
         }
-
         $this->order_model->delete_order_by_order_id($order_id);
-
     }
 }
+
+//17.通过user_id获得它所有的订单
+	public function get_all_order(){
+		if ($this->is_logined() === false || $this->is_admin() === false) {
+            die(json_encode(array(
+                'status' => 0,
+                'message' => 'You don\'t have permission to access this!'
+            )));
+        $user_id = $this->session->user_id;
+		$this->order_model->get_all_order($user_id);
+		if ($this->order_model->get_all_order($user_id)->run() === FALSE) {
+            die(json_encode(array(
+                'status' => 0,
+                'message' => 'get orders failed!'
+            )));
+        } else echo json_encode(array(
+            'status' => 1,
+            'message' => 'get orders successfully!'
+        ));
+
+	}
+
+
+
+
 
 ?>
