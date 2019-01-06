@@ -50,23 +50,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
+
 /* Users */
 $route['user'] = 'page/index';
 $route['user/login'] = 'user/login';
 $route['user/register'] = 'user/register';
 $route['user/logout'] = 'user/logout';
 
-$route['user/update/info'] = 'user/update_user_info';
-$route['user/update/avatar'] = 'user/update_user_avatar';
+$route['user/update'] = 'user/update_user_info';
 $route['user/info'] = 'user/get_personal_information';
 
 $route['user/check/username'] = 'user/check_username_existed';
 $route['user/check/email'] = 'user/check_email_existed';
 $route['user/check/captcha'] = 'user/check_captcha_current';
-
-$route['user/cart'] = 'user/get_cart';
-$route['user/cart/add/(:num)'] = 'user/add_cart';
-$route['user/cart/delete/(:num)'] = 'user/delete_cart';
 
 $route['user/get_captcha'] = 'user/get_captcha';
 
@@ -94,8 +90,10 @@ $route['items/deleteItemById/(:num)']='item/deleteItemById/$1';
 $route['items/set_item']='item/set_item';
 $route['items/update_itemNameById/(:num)']='item/update_itemNameById/$1';
 $route['items/surplusDecrease/(:num)']='item/surplusDecrease/$1';
+$route['items/get_itemsInCart']='item/get_itemsInCart';
 
 /* Index */
+
 $route['(:any)'] = 'page/index';
 $route['default_controller'] = 'page/index';
 $route['404_override'] = '';

@@ -99,8 +99,8 @@ class order extends CI_Controller
     }
 
 //9.发货
-/*
-    public function apply_for_refund()
+
+    public function delivering_order()
     {
         $order_id = $this->session->order_id;
         $status = 3;
@@ -108,7 +108,7 @@ class order extends CI_Controller
     }
 
 //10.确认收货
-    public function apply_for_refund()
+    public function delivered_order()
     {
         $order_id = $this->session->order_id;
         $status = 4;
@@ -122,7 +122,7 @@ class order extends CI_Controller
         $status = 5;
         $this->order_model->change_order_status($order_id, $status);
     }
-*/
+
 //12.管理员处理退款申请
     public function refund()
     {
