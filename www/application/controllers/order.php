@@ -332,6 +332,8 @@ class order extends CI_Controller
             $amount = $value['num'];
             $this->create_order($item_id, $amount);
         }
+
+        $this->user_model->clean_cart($user_id);
     }
 }
 ?>

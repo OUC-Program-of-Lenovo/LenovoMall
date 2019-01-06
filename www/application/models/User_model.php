@@ -385,4 +385,12 @@ class User_model extends CI_Model
         $raw = $query->row();
         return ($raw->count > 0);
     }
+
+    public function clean_cart($user_id)
+    {
+        $this->db
+            ->set(array('shopping_cart' => '|'))
+            ->where('user_id', $user_id)
+            ->update('users');
+    }
 }
